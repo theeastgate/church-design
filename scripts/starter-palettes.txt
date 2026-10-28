@@ -1,0 +1,58 @@
+# Starter palette pairs for every direction.
+# Run: python3 scripts/contrast.py --pairs scripts/starter-palettes.txt
+
+# bold-contemporary
+#111111 #ffffff bc ink/surface
+#5c5c5c #ffffff bc ink-muted/surface
+#111111 #f5f5f4 bc ink/surface-alt
+#ffffff #111111 bc button text on primary
+#ffffff #1d4ed8 bc white on accent
+# warm-editorial
+#1e2b4a #fbf8f3 we ink/surface
+#545a66 #fbf8f3 we muted/surface
+#1e2b4a #f1ece3 we ink/surface-alt
+#fbf5e6 #6e6857 we cream on taupe
+#ffffff #2456c7 we white on accent
+#2456c7 #fbf8f3 we accent link on surface
+# playful-modern
+#0b0b0c #ffffff pm ink/surface
+#0b0b0c #dff1fb pm ink on sky tint
+#0b0b0c #4fb3e8 pm ink on sky accent
+#ffffff #0b0b0c pm white on ink
+#555b63 #ffffff pm muted
+# classic-confident
+#14213d #ffffff cc ink/surface
+#ffffff #24406e cc white on navy
+#ffffff #a9573a cc white on terracotta
+#a9573a #ffffff cc terracotta link
+#ffffff #1e3a68 cc white on navy tint
+#5a6170 #ffffff cc muted
+# ministry-hub
+#18181b #fafafa mh ink/surface
+#ffffff #0b1c54 mh white on navy card
+#ffffff #000000 mh white on black card
+#ffffff #3f5a2a mh white on olive card
+#ffffff #7a2e1f mh white on brick card
+#18181b #eeeeee mh button on card
+# traditional-liturgical
+#1d2433 #fbfaf7 tl ink/surface
+#4f5563 #fbfaf7 tl muted
+#ffffff #5d6676 tl white on slate
+#8f1d21 #fbfaf7 tl rubric red on surface
+#1d2433 #ece8df tl ink on stone
+#ffffff #1d2433 tl white on ink
+# seasons on surface (small text/rules)
+#4b2a6b #fbfaf7 season purple
+#1f3a6e #fbfaf7 season advent blue
+#a3201c #fbfaf7 season red
+#2f5d3a #fbfaf7 season green
+#7a5c1a #fbfaf7 season gold (feasts)
+#7a5c1a #ece8df season gold on stone
+#111111 #fbfaf7 season black
+# text over scrims and tints (worst case: bright photo underneath)
+#ffffff #0a0e19@0.72 we white text in bottom scrim zone
+#ffffff #000000@0.65 bc white text in hero gradient zone
+#ffffff #1e3a68@0.82 cc white text on navy tint
+#ffffff #141821@0.65 tl white text on dark wash
+# large text and UI (3:1)
+#1f78ad #ffffff pm deep sky for links and icons on white

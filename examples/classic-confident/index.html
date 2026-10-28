@@ -1,0 +1,915 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cornerstone Bible Fellowship · Westfield</title>
+<meta name="description" content="Cornerstone Bible Fellowship is a Bible church in Westfield that teaches verse by verse through the Bible. Sundays at 8:30 and 10:30 AM, Wednesdays at 7:00 PM, at 2100 Ridge Road.">
+<meta name="theme-color" content="#1c3559">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='%231c3559'%3E%3Crect x='4' y='4' width='29.5' height='15' rx='1'/%3E%3Crect x='36' y='4' width='24' height='15' rx='1'/%3E%3Crect x='4' y='21.5' width='15' height='12' rx='1'/%3E%3Crect x='4' y='36' width='24' height='24' rx='1'/%3E%3Crect x='30.5' y='45' width='29.5' height='15' rx='1'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://images.unsplash.com">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Church",
+  "name": "Cornerstone Bible Fellowship",
+  "description": "A Bible church in Westfield that teaches verse by verse through the Bible.",
+  "email": "office@example.org",
+  "address": { "@type": "PostalAddress", "streetAddress": "2100 Ridge Road", "addressLocality": "Westfield" },
+  "event": [
+    { "@type": "Event", "name": "Men's Breakfast", "startDate": "2026-11-07T08:00", "location": { "@type": "Place", "name": "Cornerstone Bible Fellowship", "address": "2100 Ridge Road, Westfield" } },
+    { "@type": "Event", "name": "Food Bank Saturday", "startDate": "2026-11-14T09:00", "location": { "@type": "Place", "name": "Cornerstone Bible Fellowship", "address": "2100 Ridge Road, Westfield" } },
+    { "@type": "Event", "name": "Thanksgiving Eve Service", "startDate": "2026-11-25T19:00", "location": { "@type": "Place", "name": "Cornerstone Bible Fellowship", "address": "2100 Ridge Road, Westfield" } }
+  ]
+}
+</script>
+
+<style>
+/* ==========================================================================
+   1. TOKENS
+   Brand constants from MINISTRY.md (Classic Confident). Every component
+   below uses these variables only: no raw hex values or one-off font sizes.
+   For the WordPress classic theme, move this :root block into the child
+   theme stylesheet unchanged.
+   ========================================================================== */
+:root {
+  /* Type families */
+  --font-display: "Archivo", "Helvetica Neue", Arial, system-ui, sans-serif;  /* 700 caps headings, 600 UI caps */
+  --font-body: "Source Sans 3", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  /* Type scale: 20px base column (older audience), ratio 1.25 */
+  --text-sm: 0.9375rem;                                   /* letterspaced eyebrows, chips, captions only */
+  --text-ui: 1.0625rem;                                   /* buttons, nav, labels: 17px */
+  --text-base: 1.25rem;                                   /* body: 20px */
+  --text-lg: 1.5rem;                                      /* lead, row titles */
+  --text-xl: clamp(1.625rem, 1.3rem + 1.3vw, 1.875rem);   /* h4 */
+  --text-2xl: clamp(2rem, 1.5rem + 2.2vw, 2.5rem);        /* h3 */
+  --text-3xl: clamp(2.5rem, 1.6rem + 3.5vw, 3.25rem);     /* h2 */
+  --text-4xl: clamp(3rem, 1.8rem + 5vw, 4.75rem);         /* h1, hero */
+
+  --leading-tight: 1.06;
+  --leading-snug: 1.25;
+  --leading-body: 1.6;
+  --tracking-heading: 0.03em;                             /* caps headings */
+  --tracking-ui: 0.08em;                                  /* buttons, nav */
+  --tracking-eyebrow: 0.14em;                             /* eyebrows, chips */
+  --stretch-display: 108%;                                /* Archivo width axis */
+  --measure: 65ch;
+
+  /* Color roles */
+  --color-ink: #13213a;
+  --color-ink-muted: #525b69;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f3f1ec;                           /* "stone" */
+  --color-primary: #1c3559;                               /* Ridge navy */
+  --color-primary-deep: #0f1c31;                          /* times bar, footer */
+  --color-accent: #a14a1f;                                /* kiln rust: actions, bars, one accent word */
+  --color-accent-light: #f2b88e;                          /* the accent on dark grounds only */
+  --color-on-primary: #ffffff;
+  --color-on-accent: #ffffff;
+  --color-on-dark-muted: #c3cad6;
+  --color-rule: #d8d4cb;                                  /* decorative hairlines only */
+  --color-rule-dark: rgb(255 255 255 / 0.18);
+  --color-focus: var(--color-accent);
+
+  /* Ministry colors (ministry-hub layer, planned). White text passes 4.5:1 on each.
+     Use only on that ministry's cards, hero, and as small event dots. */
+  --mc-kids: #17706f;
+  --mc-youth: #5b3d91;
+  --mc-young-adults: #2b5a9e;
+  --mc-women: #8e3560;
+  --mc-men: #3e4c5e;
+  --mc-life-groups: #2e6a43;
+  --mc-prime-timers: #7f501a;
+  --mc-prayer: #3b3f86;
+  --mc-grief: #64476e;
+  --mc-food-bank: #596320;
+  --mc-worship-tech: #1f4e6b;
+  --mc-hospitality: #9a2f3d;
+  --mc-everyone: var(--color-primary);
+
+  /* Overlay: one treatment sitewide. Full navy tint over a grayscale photo.
+     Passes on its own over a white photo (white text 8.59:1). */
+  --overlay-tint: rgb(22 43 74 / 0.84);
+  --photo-tint-filter: grayscale(1) contrast(1.05);
+  --photo-duotone-filter: url(#duotone);                  /* navy-to-stone; SVG filter in the sprite */
+
+  /* Spacing (4px base) */
+  --space-1: 0.25rem;  --space-2: 0.5rem;  --space-3: 0.75rem; --space-4: 1rem;
+  --space-5: 1.25rem;  --space-6: 1.5rem;  --space-8: 2rem;    --space-10: 2.5rem;
+  --space-12: 3rem;    --space-16: 4rem;   --space-24: 6rem;   --space-32: 8rem;
+  --section-y: clamp(5rem, 2.5rem + 7vw, 9.5rem);
+  --section-head-gap: clamp(2.5rem, 1.5rem + 3vw, 4.5rem);   /* section head to content */
+  --split-gap: clamp(2.5rem, 0.5rem + 6vw, 7rem);             /* 64 to 112px at desktop */
+  --row-gap: clamp(1.5rem, 1rem + 1.5vw, 3rem);               /* 24 to 48px between items */
+  --container: 1160px;
+  --gutter: clamp(20px, 6vw, 112px);
+  --header-h: 88px;
+  --header-h-solid: 72px;
+
+  /* Radius family: crisp 2 / 4 / 8, no pill */
+  --radius-sm: 2px;                                       /* chips, tags, dots */
+  --radius-md: 4px;                                       /* buttons, fields, date tiles */
+  --radius-lg: 8px;                                       /* photos, panels */
+  --radius-button: var(--radius-md);
+
+  /* Buttons */
+  --button-h: 52px;
+  --accent-bar-w: 40px;
+  --accent-bar-h: 3px;
+
+  /* Elevation and motion */
+  --shadow-header: 0 1px 0 var(--color-rule), 0 6px 20px rgb(19 33 58 / 0.06);
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --duration-ui: 200ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --duration-ui: 0ms; }
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* ==========================================================================
+   2. BASE
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h-solid) + var(--space-4)); -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+body.menu-open { overflow: hidden; }
+img { display: block; max-width: 100%; }
+p { margin: 0; }
+a { color: inherit; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+h1, h2, h3, h4 { margin: 0; font-family: var(--font-display); font-weight: 700; font-stretch: var(--stretch-display); line-height: var(--leading-tight); }
+
+/* Caps headings: one line at desktop, two at most on a phone */
+.caps { text-transform: uppercase; letter-spacing: var(--tracking-heading); }
+.h1 { font-size: var(--text-4xl); }
+.h2 { font-size: var(--text-3xl); }
+.h3 { font-size: var(--text-2xl); }
+.h4 { font-size: var(--text-xl); }
+
+:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; border-radius: var(--radius-sm); }
+.on-dark { --color-focus: var(--color-accent-light); color: var(--color-on-primary); }
+
+.skip-link {
+  position: absolute; left: var(--space-4); top: -100px; z-index: 100;
+  background: var(--color-surface); color: var(--color-ink);
+  padding: var(--space-3) var(--space-4); border-radius: var(--radius-md);
+  font: 600 var(--text-ui)/1 var(--font-display); text-decoration: none;
+}
+.skip-link:focus { top: var(--space-4); }
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ==========================================================================
+   3. LAYOUT PRIMITIVES
+   ========================================================================== */
+.container { width: min(100% - 2 * var(--gutter), var(--container)); margin-inline: auto; }
+.section { padding-block: var(--section-y); }
+.section--alt { background: var(--color-surface-alt); }
+
+.split { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--split-gap); }
+@media (min-width: 960px) {
+  .split { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; }
+  .split--stretch { align-items: stretch; }
+}
+
+/* Section rhythm: accent bar → 24px → headline → 24–32px → body → 32–40px → action */
+.accent-bar { display: block; width: var(--accent-bar-w); height: var(--accent-bar-h); background: var(--color-accent); margin-bottom: var(--space-6); }
+.on-dark .accent-bar { background: var(--color-accent-light); }
+.lead { margin-top: var(--space-6); font-size: var(--text-base); color: var(--color-ink-muted); max-width: 40ch; }
+.actions { margin-top: var(--space-10); display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-4); align-items: center; }
+
+.section-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--space-6) var(--space-12); margin-bottom: var(--section-head-gap); }
+.section-head__intro .lead { max-width: 44ch; }
+.section-head > .lead { margin-top: 0; max-width: 40ch; }
+
+/* ==========================================================================
+   4. COMPONENTS
+   ========================================================================== */
+/* Icons: Tabler outline, 2px stroke, currentColor */
+.icon { width: 1.25em; height: 1.25em; flex: none; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Buttons: one shape (4px), two styles. Caps, three words or fewer. */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-3);
+  min-height: var(--button-h); padding: 0 var(--space-6);
+  border: 2px solid transparent; border-radius: var(--radius-button);
+  font-family: var(--font-display); font-weight: 600; font-size: var(--text-ui); font-stretch: var(--stretch-display);
+  text-transform: uppercase; letter-spacing: var(--tracking-ui); line-height: 1;
+  text-decoration: none; cursor: pointer; white-space: nowrap;
+  transition: background-color var(--duration-ui) var(--ease-out), color var(--duration-ui) var(--ease-out), border-color var(--duration-ui) var(--ease-out);
+}
+.btn .icon { width: 1.25rem; height: 1.25rem; transition: transform var(--duration-ui) var(--ease-out); }
+.btn:hover .icon--arrow { transform: translateX(3px); }
+.btn--solid { background: var(--color-accent); color: var(--color-on-accent); }
+.btn--solid:hover { background: var(--color-ink); }
+.on-dark .btn--solid:hover, .on-tint .btn--solid:hover { background: var(--color-on-primary); color: var(--color-ink); }
+.btn--outline { border-color: var(--color-ink); color: var(--color-ink); background: transparent; }
+.btn--outline:hover { background: var(--color-ink); color: var(--color-surface); }
+.on-dark .btn--outline, .on-tint .btn--outline { border-color: var(--color-on-primary); color: var(--color-on-primary); }
+.on-dark .btn--outline:hover, .on-tint .btn--outline:hover { background: var(--color-on-primary); color: var(--color-ink); }
+
+/* Third tier: caps text link with arrow */
+.link-arrow {
+  display: inline-flex; align-items: center; gap: var(--space-2); min-height: 44px;
+  font-family: var(--font-display); font-weight: 600; font-size: var(--text-ui); font-stretch: var(--stretch-display);
+  text-transform: uppercase; letter-spacing: var(--tracking-ui);
+  color: var(--color-accent); text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) 0 calc(100% - 8px) / 100% 2px no-repeat;
+  transition: background-size var(--duration-ui) var(--ease-out);
+}
+.link-arrow .icon { transition: transform var(--duration-ui) var(--ease-out); }
+.link-arrow:hover .icon { transform: translateX(3px); }
+.link-arrow:hover { background-size: 0% 2px; }
+.on-dark .link-arrow { color: var(--color-accent-light); }
+
+/* Eyebrow: caps label, one line */
+.eyebrow { font-family: var(--font-display); font-weight: 600; font-size: var(--text-sm); font-stretch: var(--stretch-display); text-transform: uppercase; letter-spacing: var(--tracking-eyebrow); color: var(--color-ink-muted); }
+.on-dark .eyebrow, .on-tint .eyebrow { color: var(--color-accent-light); }
+
+/* Book-of-the-Bible chip */
+.chip {
+  display: inline-flex; align-items: center; padding: var(--space-1) var(--space-3);
+  border: 1.5px solid currentColor; border-radius: var(--radius-sm);
+  font-family: var(--font-display); font-weight: 700; font-size: var(--text-sm); font-stretch: var(--stretch-display);
+  text-transform: uppercase; letter-spacing: var(--tracking-eyebrow); line-height: 1.4;
+}
+
+/* Ministry dot (event tags): a small squared stone, echoing the mark */
+.dot { display: inline-block; width: 0.75rem; height: 0.75rem; border-radius: var(--radius-sm); background: var(--mc, var(--mc-everyone)); flex: none; }
+
+/* Photos: crisp 8px corners; tint, duotone, or untinted */
+.photo { position: relative; margin: 0; border-radius: var(--radius-lg); overflow: hidden; background: var(--color-primary); }
+.photo img { width: 100%; height: 100%; object-fit: cover; }
+.photo--duotone img { filter: var(--photo-duotone-filter); }
+.tinted { position: relative; isolation: isolate; }
+.tinted > .tinted__media { position: absolute; inset: 0; z-index: -1; background: var(--color-primary); }
+.tinted > .tinted__media img { width: 100%; height: 100%; object-fit: cover; filter: var(--photo-tint-filter); }
+.tinted > .tinted__media::after { content: ""; position: absolute; inset: 0; background: var(--overlay-tint); }
+.on-tint { --color-focus: var(--color-accent-light); color: var(--color-on-primary); }
+
+/* Mark */
+.mark { width: 1em; height: 1em; fill: currentColor; flex: none; }
+
+/* ==========================================================================
+   5. HEADER AND MOBILE MENU
+   The menu sits outside the header so position: fixed covers the screen.
+   ========================================================================== */
+.site-header {
+  position: fixed; inset: 0 0 auto 0; z-index: 50;
+  color: var(--color-on-primary); --color-focus: var(--color-accent-light);
+  transition: background-color var(--duration-ui) var(--ease-out), color var(--duration-ui) var(--ease-out), box-shadow var(--duration-ui) var(--ease-out);
+}
+.site-header__inner { height: var(--header-h); display: flex; align-items: center; gap: var(--space-6); transition: height var(--duration-ui) var(--ease-out); }
+.site-header.is-solid { background: var(--color-surface); color: var(--color-ink); box-shadow: var(--shadow-header); --color-focus: var(--color-accent); }
+.site-header.is-solid .site-header__inner { height: var(--header-h-solid); }
+
+.logo { display: inline-flex; align-items: center; gap: var(--space-3); text-decoration: none; margin-right: auto; min-height: 48px; }
+.logo .mark { font-size: 2.5rem; }
+.site-header.is-solid .logo .mark { color: var(--color-primary); }
+.logo__words { display: flex; flex-direction: column; line-height: 1; font-family: var(--font-display); text-transform: uppercase; }
+.logo__name { font-weight: 700; font-size: 1.125rem; font-stretch: 112%; letter-spacing: 0.06em; }
+.logo__sub { margin-top: 0.3rem; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.24em; }
+
+.nav { display: none; }
+.nav ul { display: flex; gap: var(--space-1); }
+.nav a, .header-give {
+  display: inline-flex; align-items: center; min-height: 48px; padding: 0 var(--space-3);
+  font-family: var(--font-display); font-weight: 600; font-size: var(--text-ui); font-stretch: var(--stretch-display);
+  text-transform: uppercase; letter-spacing: var(--tracking-ui); text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) center calc(100% - 10px) / 0% 2px no-repeat;
+  transition: background-size var(--duration-ui) var(--ease-out);
+}
+.nav a:hover, .header-give:hover { background-size: calc(100% - 1.5rem) 2px; }
+.header-actions { display: flex; align-items: center; gap: var(--space-2); }
+.header-visit { display: none; }
+.site-header:not(.is-solid) .header-visit { --color-on-accent: var(--color-on-primary); }
+
+.menu-toggle {
+  display: inline-flex; align-items: center; gap: var(--space-2); min-height: 48px; min-width: 48px; padding: 0 var(--space-3);
+  background: transparent; color: inherit; border: 2px solid currentColor; border-radius: var(--radius-button);
+  font: 600 var(--text-ui)/1 var(--font-display); font-stretch: var(--stretch-display); text-transform: uppercase; letter-spacing: var(--tracking-ui); cursor: pointer;
+}
+.menu-toggle .icon { width: 1.375rem; height: 1.375rem; }
+
+@media (min-width: 720px) { .header-visit { display: inline-flex; } }
+@media (max-width: 419px) {
+  .menu-toggle__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .site-header__inner { gap: var(--space-2); }
+  .logo { gap: var(--space-2); }
+  .logo .mark { font-size: 2.125rem; }
+  .logo__name { font-size: 1rem; letter-spacing: 0.04em; }
+  .logo__sub { font-size: 0.6875rem; letter-spacing: 0.16em; }
+  .header-give { padding: 0 var(--space-2); }
+}
+@media (min-width: 1200px) {
+  .nav { display: block; }
+  .header-give { display: none; }
+  .menu-toggle { display: none; }
+}
+
+.menu {
+  position: fixed; inset: 0; z-index: 60; overflow-y: auto;
+  background: var(--color-primary); color: var(--color-on-primary);
+  visibility: hidden; opacity: 0;
+  transition: opacity var(--duration-ui) var(--ease-out), visibility 0s linear var(--duration-ui);
+}
+.menu.is-open { visibility: visible; opacity: 1; transition: opacity var(--duration-ui) var(--ease-out), visibility 0s; }
+.menu__top { height: var(--header-h-solid); display: flex; align-items: center; }
+.menu__pinned { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); margin-top: var(--space-6); }
+.menu__pinned .btn { padding: 0 var(--space-3); }
+@media (max-width: 479px) { .menu__pinned { grid-template-columns: minmax(0, 1fr); } }
+.menu__links { margin-top: var(--space-8); border-top: 1px solid var(--color-rule-dark); }
+.menu__links a {
+  display: flex; align-items: center; justify-content: space-between; min-height: 64px;
+  border-bottom: 1px solid var(--color-rule-dark); text-decoration: none;
+  font-family: var(--font-display); font-weight: 700; font-size: var(--text-xl); font-stretch: var(--stretch-display);
+  text-transform: uppercase; letter-spacing: var(--tracking-heading);
+}
+.menu__links .icon { color: var(--color-accent-light); }
+.menu__info { margin-block: var(--space-8) var(--space-12); color: var(--color-on-dark-muted); font-size: var(--text-ui); line-height: 1.6; }
+.menu__info strong { color: var(--color-on-primary); font-weight: 600; }
+
+/* ==========================================================================
+   6. SECTIONS
+   ========================================================================== */
+
+/* --- Hero: full-bleed tinted sanctuary, times bar on its lower edge --- */
+.hero { display: grid; grid-template-rows: 1fr auto; min-height: min(92vh, 920px); }
+.hero__body { align-self: end; padding-top: calc(var(--header-h) + var(--space-16)); padding-bottom: clamp(3rem, 1.5rem + 5vw, 6.5rem); }
+.hero .eyebrow { margin-bottom: var(--space-6); }
+.hero__title { font-size: var(--text-4xl); }
+.accent-word { color: var(--color-accent-light); }
+.hero .lead { color: var(--color-on-primary); font-size: var(--text-lg); line-height: 1.45; max-width: 40ch; margin-top: var(--space-8); }
+.hero .tinted__media img { object-position: 50% 40%; }
+/* Directional tint on wide screens: full strength behind the text, easing off to the right so the sanctuary still reads. */
+@media (min-width: 960px) {
+  .hero .tinted__media::after { background: linear-gradient(90deg, rgb(22 43 74 / 0.9) 0%, rgb(22 43 74 / 0.86) 48%, rgb(22 43 74 / 0.5) 100%); }
+}
+
+.times-bar { background: var(--color-primary-deep); color: var(--color-on-primary); }
+.times-bar__list { display: grid; gap: var(--space-6); padding-block: var(--space-8); }
+.times-bar__item { display: flex; gap: var(--space-4); align-items: flex-start; }
+.times-bar__item .icon { color: var(--color-accent-light); width: 1.75rem; height: 1.75rem; margin-top: 0.1rem; }
+.times-bar__main { display: block; font-family: var(--font-display); font-weight: 700; font-size: var(--text-lg); font-stretch: var(--stretch-display); text-transform: uppercase; letter-spacing: var(--tracking-heading); line-height: 1.15; }
+.times-bar__note { display: block; margin-top: var(--space-1); color: var(--color-on-dark-muted); font-size: var(--text-ui); line-height: 1.45; }
+.times-bar__link { margin-top: var(--space-1); }
+@media (min-width: 640px) { .times-bar__list { grid-template-columns: 1fr 1fr; gap: var(--space-8) var(--space-10); } }
+@media (min-width: 1200px) {
+  .times-bar__main { white-space: nowrap; }
+  .times-bar__list { grid-template-columns: auto auto minmax(0, auto); justify-content: space-between; align-items: start; padding-block: var(--space-10); gap: var(--space-10); }
+  .times-bar__item + .times-bar__item { border-left: 1px solid var(--color-rule-dark); padding-left: var(--space-10); }
+}
+
+/* --- First Sunday: intro + three practical rows beside one warm photo --- */
+.practical { margin-top: var(--space-10); border-top: 1px solid var(--color-rule); }
+.practical li { display: grid; grid-template-columns: auto 1fr; gap: var(--space-4); padding-block: var(--space-5); border-bottom: 1px solid var(--color-rule); }
+.practical .icon { color: var(--color-accent); width: 1.75rem; height: 1.75rem; margin-top: 0.15rem; }
+.practical__title { display: block; font-family: var(--font-display); font-weight: 700; font-size: var(--text-ui); font-stretch: var(--stretch-display); text-transform: uppercase; letter-spacing: var(--tracking-ui); line-height: 1.5; }
+.practical__text { display: block; color: var(--color-ink-muted); }
+.first-sunday .photo { aspect-ratio: 4 / 3; }
+.first-sunday .photo img { object-position: 40% 35%; }
+@media (min-width: 960px) {
+  .first-sunday .photo { aspect-ratio: auto; height: 100%; min-height: 32rem; }
+}
+
+/* --- Verse band: navy, one verse, mark watermark bleeding off the edge --- */
+.verse-band { position: relative; overflow: hidden; background: var(--color-primary); }
+.verse-band__mark { fill: currentColor; position: absolute; right: -6%; top: 50%; width: clamp(22rem, 12rem + 30vw, 40rem); height: auto; aspect-ratio: 1; transform: translateY(-50%); color: var(--color-on-primary); opacity: 0.06; pointer-events: none; }
+.verse { position: relative; margin: 0; }
+.verse p { font-family: var(--font-display); font-weight: 500; font-stretch: 100%; font-size: var(--text-3xl); line-height: var(--leading-snug); letter-spacing: -0.005em; max-width: 24ch; }
+.verse footer { margin-top: var(--space-8); }
+.verse cite { font-style: normal; font-family: var(--font-display); font-weight: 600; font-size: var(--text-ui); font-stretch: var(--stretch-display); text-transform: uppercase; letter-spacing: var(--tracking-eyebrow); color: var(--color-accent-light); }
+
+/* --- Latest message: wide panel, tinted Bible photo, caps title --- */
+.sermon-panel { border-radius: var(--radius-lg); overflow: hidden; }
+.sermon-panel__body { padding: clamp(1.5rem, 0.5rem + 5vw, 5rem); max-width: 52rem; }
+.sermon-panel .tinted__media img { object-position: 70% 50%; }
+.sermon-panel__tags { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-4); margin-bottom: var(--space-6); }
+.sermon-panel__title { font-size: var(--text-2xl); }
+@media (min-width: 960px) { .sermon-panel__title { font-size: var(--text-3xl); } }
+.sermon-meta { margin-top: var(--space-6); display: grid; gap: var(--space-1); }
+.sermon-meta__passage { font-family: var(--font-display); font-weight: 600; font-size: var(--text-lg); font-stretch: var(--stretch-display); }
+.sermon-meta__by { color: var(--color-on-dark-muted); }
+.sermon-meta cite { font-style: normal; color: var(--color-on-primary); }
+@media (min-width: 960px) { .sermon-panel { min-height: 30rem; display: flex; align-items: center; } }
+
+/* --- Find your place: index rows with the ministry color as edge and hover fill --- */
+.place-split { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--split-gap); }
+.place-split .photo { aspect-ratio: 4 / 3; order: 2; }
+.place-split .photo img { object-position: 50% 30%; }
+@media (min-width: 640px) and (max-width: 1199px) { .place-split .photo { aspect-ratio: 16 / 9; } }
+/* Split only where both halves balance; below 1200px the index stacks above the photo */
+@media (min-width: 1200px) {
+  .place-split { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: stretch; }
+  .place-split .photo { aspect-ratio: auto; order: 0; min-height: 28rem; }
+}
+.place-index { border-top: 1px solid var(--color-rule); }
+.place-row {
+  position: relative; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: var(--space-1) var(--space-6);
+  padding: var(--space-5) var(--space-5) var(--space-5) calc(var(--space-6) + 6px);
+  border-bottom: 1px solid var(--color-rule); text-decoration: none; isolation: isolate;
+  transition: color var(--duration-ui) var(--ease-out);
+}
+.place-row::before { content: ""; position: absolute; inset: -1px auto -1px 0; width: 6px; background: var(--mc); z-index: -1; transition: width var(--duration-ui) var(--ease-out); }
+.place-row__name { font-family: var(--font-display); font-weight: 700; font-size: var(--text-xl); font-stretch: var(--stretch-display); text-transform: uppercase; letter-spacing: var(--tracking-heading); line-height: 1.15; }
+.place-row__desc { grid-column: 1; color: var(--color-ink-muted); transition: color var(--duration-ui) var(--ease-out); }
+.place-row__arrow {
+  grid-column: 2; grid-row: 1 / span 2; display: grid; place-items: center; width: 48px; height: 48px;
+  border: 2px solid var(--color-ink); border-radius: var(--radius-md); color: var(--color-ink);
+  transition: background-color var(--duration-ui) var(--ease-out), color var(--duration-ui) var(--ease-out), border-color var(--duration-ui) var(--ease-out);
+}
+.place-row:hover, .place-row:focus-visible { color: var(--color-on-primary); }
+.place-row:hover::before, .place-row:focus-visible::before { width: 100%; }
+.place-row:hover .place-row__desc, .place-row:focus-visible .place-row__desc { color: var(--color-on-primary); }
+.place-row:hover .place-row__arrow, .place-row:focus-visible .place-row__arrow { border-color: var(--color-on-primary); background: var(--color-on-primary); color: var(--mc); }
+.place-row:focus-visible { outline-offset: 2px; }
+.place-index__more { margin-top: var(--space-8); }
+@media (max-width: 599px) {
+  .place-row { padding: var(--space-5) var(--space-2) var(--space-5) calc(var(--space-5) + 6px); gap: var(--space-1) var(--space-3); }
+  .place-row__name { font-size: var(--text-lg); }
+  .place-row__arrow { width: 44px; height: 44px; border-color: transparent; }
+}
+
+/* --- Coming up: date tiles, up to three --- */
+.events { display: grid; gap: var(--row-gap); }
+.event { display: grid; grid-template-columns: auto 1fr; gap: var(--space-5); align-items: start; text-decoration: none; padding-top: var(--space-6); border-top: 1px solid var(--color-rule); }
+.date-tile { display: grid; place-items: center; align-content: center; width: 5.5rem; height: 6rem; border-radius: var(--radius-md); background: var(--color-primary); color: var(--color-on-primary); transition: background-color var(--duration-ui) var(--ease-out); }
+.date-tile__mon { font-family: var(--font-display); font-weight: 600; font-size: var(--text-sm); font-stretch: var(--stretch-display); text-transform: uppercase; letter-spacing: var(--tracking-eyebrow); color: var(--color-accent-light); line-height: 1; }
+.date-tile__day { font-family: var(--font-display); font-weight: 700; font-size: 2.5rem; font-stretch: var(--stretch-display); line-height: 1; margin-top: var(--space-1); }
+.event__title { font-size: var(--text-xl); line-height: 1.15; }  /* sentence case: event names run long */
+.event__when { display: block; margin-top: var(--space-2); }
+.event__tag { display: inline-flex; align-items: center; gap: var(--space-2); margin-top: var(--space-2); color: var(--color-ink-muted); font-size: var(--text-ui); }
+.event:hover .date-tile { background: var(--color-accent); }
+.event:hover .event__title { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.18em; }
+@media (min-width: 760px) { .events { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 760px) and (max-width: 1099px) { .event { grid-template-columns: 1fr; } }
+
+/* --- Give and prayer: one warm photo beside two short blocks --- */
+.give-split { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--split-gap); }
+.give-split .photo { aspect-ratio: 4 / 3; order: 2; }
+.give-split .photo img { object-position: 50% 25%; }
+.give-block + .give-block { margin-top: var(--space-12); padding-top: var(--space-12); border-top: 1px solid var(--color-rule); }
+.give-block .h3 { font-size: var(--text-2xl); }
+.give-block .lead { max-width: 42ch; }
+.give-block .actions { margin-top: var(--space-8); }
+@media (min-width: 960px) {
+  .give-split { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: stretch; }
+  .give-split .photo { aspect-ratio: auto; order: 0; min-height: 30rem; }
+  .give-split__text { align-self: center; }
+}
+@media (min-width: 1200px) { .give-split { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); } }
+
+/* --- Footer --- */
+.site-footer { background: var(--color-primary-deep); color: var(--color-on-primary); padding-block: clamp(4rem, 2rem + 5vw, 7rem) var(--space-10); font-size: var(--text-ui); line-height: 1.6; }
+.footer-grid { display: grid; gap: var(--space-12) var(--space-10); }
+.footer-brand .logo { margin-right: 0; }
+.footer-brand .logo .mark { color: var(--color-on-primary); }
+.footer-brand p { margin-top: var(--space-6); color: var(--color-on-dark-muted); max-width: 30ch; }
+.footer-col h2 { font-size: var(--text-sm); font-weight: 600; text-transform: uppercase; letter-spacing: var(--tracking-eyebrow); color: var(--color-accent-light); margin-bottom: var(--space-4); }
+.footer-col p + p { margin-top: var(--space-3); }
+.footer-col .muted { color: var(--color-on-dark-muted); }
+.footer-col strong { font-weight: 600; }
+.footer-links li a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; }
+.footer-links li a:hover, .footer-col a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+.footer-col .link-arrow { margin-top: var(--space-2); }
+.footer-bottom { margin-top: var(--space-16); padding-top: var(--space-8); border-top: 1px solid var(--color-rule-dark); display: grid; gap: var(--space-3); color: var(--color-on-dark-muted); font-size: 1rem; }
+.footer-bottom a { color: var(--color-on-primary); }
+@media (min-width: 700px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1100px) { .footer-grid { grid-template-columns: 1.3fr 1.2fr 1fr 0.8fr; } }
+</style>
+</head>
+<body>
+
+<!-- Sprite: the church's mark, Tabler icons (MIT, 2px outline), and the duotone filter -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="mark" viewBox="0 0 64 64">
+      <rect x="4" y="4" width="29.5" height="15" rx="1"/>
+      <rect x="36" y="4" width="24" height="15" rx="1"/>
+      <rect x="4" y="21.5" width="15" height="12" rx="1"/>
+      <rect x="4" y="36" width="24" height="24" rx="1"/>
+      <rect x="30.5" y="45" width="29.5" height="15" rx="1"/>
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"/><path d="M12 7v5l3 3"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z"/><path d="M16 3v4"/><path d="M8 3v4"/><path d="M4 11h16"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/><path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4v16l13 -8z"/></symbol>
+    <symbol id="i-notes" viewBox="0 0 24 24"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"/><path d="M9 9l1 0"/><path d="M9 13l6 0"/><path d="M9 17l6 0"/></symbol>
+    <symbol id="i-music" viewBox="0 0 24 24"><path d="M3 17a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/><path d="M13 17a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/><path d="M9 17v-13h10v13"/><path d="M9 8h10"/></symbol>
+    <symbol id="i-shirt" viewBox="0 0 24 24"><path d="M15 4l6 2v5h-3v8a1 1 0 0 1 -1 1h-10a1 1 0 0 1 -1 -1v-8h-3v-5l6 -2a3 3 0 0 0 6 0"/></symbol>
+    <symbol id="i-carriage" viewBox="0 0 24 24"><path d="M6 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M16 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M2 5h2.5l1.632 4.897a6 6 0 0 0 5.693 4.103h2.675a5.5 5.5 0 0 0 0 -11h-.5v6"/><path d="M6 9h14"/><path d="M9 17l1 -3"/><path d="M16 14l1 3"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"/><path d="M3 7l9 6l9 -6"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6l16 0"/><path d="M4 12l16 0"/><path d="M4 18l16 0"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6l-12 12"/><path d="M6 6l12 12"/></symbol>
+    <!-- Duotone: luminance mapped from primary navy (#1c3559) to stone (#f3f1ec) -->
+    <filter id="duotone" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="0.2126 0.7152 0.0722 0 0  0.2126 0.7152 0.0722 0 0  0.2126 0.7152 0.0722 0 0  0 0 0 1 0"/>
+      <feComponentTransfer>
+        <feFuncR type="table" tableValues="0.110 0.953"/>
+        <feFuncG type="table" tableValues="0.208 0.945"/>
+        <feFuncB type="table" tableValues="0.349 0.925"/>
+      </feComponentTransfer>
+    </filter>
+  </defs>
+</svg>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" id="site-header">
+  <div class="container site-header__inner">
+    <a class="logo" href="/" aria-label="Cornerstone Bible Fellowship, home">
+      <svg class="mark" aria-hidden="true" focusable="false"><use href="#mark"/></svg>
+      <span class="logo__words" aria-hidden="true"><span class="logo__name">Cornerstone</span><span class="logo__sub">Bible Fellowship</span></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <ul>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/sermons/">Sermons</a></li>
+        <li><a href="ministries.html">Ministries</a></li>
+        <li><a href="/events/">Events</a></li>
+        <li><a href="https://example.org/give">Give</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a class="header-give" href="https://example.org/give">Give</a>
+      <a class="btn btn--solid header-visit" href="/plan-a-visit/">Plan your visit</a>
+      <button class="menu-toggle" type="button" id="menu-open" aria-expanded="false" aria-controls="menu">
+        <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg><span class="menu-toggle__label">Menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="menu on-dark" id="menu" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="container">
+    <div class="menu__top">
+      <a class="logo" href="/" aria-label="Cornerstone Bible Fellowship, home">
+        <svg class="mark" aria-hidden="true" focusable="false"><use href="#mark"/></svg>
+        <span class="logo__words" aria-hidden="true"><span class="logo__name">Cornerstone</span><span class="logo__sub">Bible Fellowship</span></span>
+      </a>
+      <button class="menu-toggle" type="button" id="menu-close">
+        <svg class="icon" aria-hidden="true"><use href="#i-x"/></svg><span class="menu-toggle__label">Close</span>
+      </button>
+    </div>
+    <div class="menu__pinned">
+      <a class="btn btn--solid" href="/plan-a-visit/">Plan your visit</a>
+      <a class="btn btn--outline" href="https://example.org/give">Give online</a>
+    </div>
+    <nav aria-label="Main, mobile">
+      <ul class="menu__links">
+        <li><a href="/about/">About <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        <li><a href="/sermons/">Sermons <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        <li><a href="ministries.html">Ministries <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        <li><a href="/events/">Events <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+      </ul>
+    </nav>
+    <div class="menu__info">
+      <p><strong>Sundays 8:30 and 10:30 AM</strong> · Wednesdays 7:00 PM</p>
+      <p>2100 Ridge Road, Westfield, between Oak Street and Highway 9</p>
+    </div>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- 1. Hero: who we are, when and where -->
+  <section class="hero tinted on-tint" aria-labelledby="hero-title">
+    <div class="tinted__media">
+      <img src="https://images.unsplash.com/photo-1569945632895-bcef03b82d88?auto=format&fit=crop&w=2400&q=80"
+           srcset="https://images.unsplash.com/photo-1569945632895-bcef03b82d88?auto=format&fit=crop&w=900&q=80 900w,
+                   https://images.unsplash.com/photo-1569945632895-bcef03b82d88?auto=format&fit=crop&w=1400&q=80 1400w,
+                   https://images.unsplash.com/photo-1569945632895-bcef03b82d88?auto=format&fit=crop&w=2400&q=80 2400w"
+           sizes="100vw" width="2400" height="1590" alt="" fetchpriority="high">
+    </div>
+    <div class="container hero__body">
+      <p class="eyebrow">A Bible church in Westfield</p>
+      <h1 class="hero__title caps" id="hero-title">Built on the <span class="accent-word">Word</span></h1>
+      <p class="lead">We teach through the Bible verse by verse, for every age. You're welcome this Sunday.</p>
+      <div class="actions">
+        <a class="btn btn--solid" href="/plan-a-visit/">Plan your visit <svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--outline" href="/sermons/faith-that-works/"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg> Watch latest</a>
+      </div>
+    </div>
+    <div class="times-bar on-dark">
+      <ul class="container times-bar__list" aria-label="Service times and location">
+        <li class="times-bar__item">
+          <svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>
+          <span><span class="times-bar__main">Sundays 8:30 &amp; 10:30 AM</span><span class="times-bar__note">About 75 minutes</span></span>
+        </li>
+        <li class="times-bar__item">
+          <svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>
+          <span><span class="times-bar__main">Wednesdays 7:00 PM</span><span class="times-bar__note">Midweek Bible study</span></span>
+        </li>
+        <li class="times-bar__item">
+          <svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>
+          <span><span class="times-bar__main">2100 Ridge Road</span><span class="times-bar__note">Westfield, between Oak Street and Highway 9</span>
+            <a class="link-arrow times-bar__link" href="https://www.google.com/maps/search/?api=1&amp;query=2100+Ridge+Road+Westfield">Get directions <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 2. First Sunday: three practical promises, one action -->
+  <section class="section first-sunday" aria-labelledby="first-title">
+    <div class="container split split--stretch">
+      <div class="first-sunday__text">
+        <span class="accent-bar" aria-hidden="true"></span>
+        <h2 class="h2 caps" id="first-title">New here?</h2>
+        <p class="lead">Park in the north lot. Accessible parking is right by the front doors.</p>
+        <ul class="practical">
+          <li><svg class="icon" aria-hidden="true"><use href="#i-music"/></svg><span><span class="practical__title">About 75 minutes</span><span class="practical__text">Hymns, modern worship, and Bible teaching.</span></span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-shirt"/></svg><span><span class="practical__title">Casual or dressy</span><span class="practical__text">Wear what you're comfortable in.</span></span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-carriage"/></svg><span><span class="practical__title">Cornerstone Kids</span><span class="practical__text">Nursery through 5th grade, at both services.</span></span></li>
+        </ul>
+        <div class="actions">
+          <a class="btn btn--solid" href="/plan-a-visit/">Plan your visit <svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+      <figure class="photo">
+        <img src="https://images.unsplash.com/photo-1773227054096-2857c73ef2da?auto=format&fit=crop&w=1400&q=80"
+             srcset="https://images.unsplash.com/photo-1773227054096-2857c73ef2da?auto=format&fit=crop&w=900&q=80 900w,
+                     https://images.unsplash.com/photo-1773227054096-2857c73ef2da?auto=format&fit=crop&w=1400&q=80 1400w"
+             sizes="(min-width: 960px) 50vw, 100vw" width="1400" height="933" loading="lazy"
+             alt="An older couple smiling and waving hello">
+      </figure>
+    </div>
+  </section>
+
+  <!-- 3. Scripture moment -->
+  <section class="section verse-band on-dark" aria-label="Scripture">
+    <svg class="verse-band__mark" aria-hidden="true" focusable="false"><use href="#mark"/></svg>
+    <div class="container">
+      <span class="accent-bar" aria-hidden="true"></span>
+      <blockquote class="verse">
+        <p>&ldquo;But be doers of the word, and not hearers only, deceiving yourselves.&rdquo;</p>
+        <footer><cite>James 1:22 NKJV</cite></footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- 4. Latest message: teaching first -->
+  <section class="section" id="latest" aria-labelledby="message-title">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__intro">
+          <span class="accent-bar" aria-hidden="true"></span>
+          <h2 class="h2 caps" id="message-title">Latest message</h2>
+        </div>
+        <a class="link-arrow" href="/sermons/">All sermons <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      <article class="sermon-panel tinted on-tint" aria-labelledby="sermon-title">
+        <div class="tinted__media">
+          <img src="https://images.unsplash.com/photo-1654124803544-f6c16b80e010?auto=format&fit=crop&w=1400&q=80"
+               srcset="https://images.unsplash.com/photo-1654124803544-f6c16b80e010?auto=format&fit=crop&w=900&q=80 900w,
+                       https://images.unsplash.com/photo-1654124803544-f6c16b80e010?auto=format&fit=crop&w=1400&q=80 1400w,
+                       https://images.unsplash.com/photo-1654124803544-f6c16b80e010?auto=format&fit=crop&w=2400&q=80 2400w"
+               sizes="(min-width: 1280px) 1160px, 100vw" width="1400" height="933" loading="lazy" alt="">
+        </div>
+        <div class="sermon-panel__body">
+          <div class="sermon-panel__tags">
+            <span class="chip">James</span>
+            <span class="eyebrow"><time datetime="2026-10-25">October 25, 2026</time></span>
+          </div>
+          <h3 class="sermon-panel__title caps" id="sermon-title">Faith that works</h3>
+          <div class="sermon-meta">
+            <span class="sermon-meta__passage">James 2:14&ndash;26</span>
+            <span class="sermon-meta__by">Pastor Tom Becker</span>
+            <span class="sermon-meta__by">Series: <cite>James: Faith in Action</cite></span>
+          </div>
+          <div class="actions">
+            <a class="btn btn--solid" href="/sermons/faith-that-works/"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg> Watch<span class="visually-hidden"> Faith That Works</span></a>
+            <a class="btn btn--outline" href="/sermons/faith-that-works/#notes"><svg class="icon" aria-hidden="true"><use href="#i-notes"/></svg> Notes<span class="visually-hidden"> for Faith That Works</span></a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 5. Find your place: five life stages, link to all twelve ministries -->
+  <section class="section section--alt" aria-labelledby="place-title">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__intro">
+          <span class="accent-bar" aria-hidden="true"></span>
+          <h2 class="h2 caps" id="place-title">Find your place</h2>
+        </div>
+        <p class="lead">Every age has a place here, from the nursery to Prime Timers.</p>
+      </div>
+      <div class="place-split">
+        <figure class="photo photo--duotone">
+          <img src="https://images.unsplash.com/photo-1544486927-c903fcc7dcc3?auto=format&fit=crop&w=1400&q=80"
+               srcset="https://images.unsplash.com/photo-1544486927-c903fcc7dcc3?auto=format&fit=crop&w=900&q=80 900w,
+                       https://images.unsplash.com/photo-1544486927-c903fcc7dcc3?auto=format&fit=crop&w=1400&q=80 1400w"
+               sizes="(min-width: 960px) 40vw, 100vw" width="1400" height="933" loading="lazy"
+               alt="Two young men talking over coffee at a table">
+        </figure>
+        <div>
+          <ul class="place-index">
+            <li><a class="place-row" href="/ministries/kids/" style="--mc: var(--mc-kids)"><span class="place-row__name">Cornerstone Kids</span><span class="place-row__desc">Nursery through 5th grade, Sundays.</span><span class="place-row__arrow" aria-hidden="true"><svg class="icon"><use href="#i-arrow"/></svg></span></a></li>
+            <li><a class="place-row" href="/ministries/youth/" style="--mc: var(--mc-youth)"><span class="place-row__name">Youth</span><span class="place-row__desc">6th through 12th grade.</span><span class="place-row__arrow" aria-hidden="true"><svg class="icon"><use href="#i-arrow"/></svg></span></a></li>
+            <li><a class="place-row" href="/ministries/young-adults/" style="--mc: var(--mc-young-adults)"><span class="place-row__name">Young Adults</span><span class="place-row__desc">Friendship and Bible study.</span><span class="place-row__arrow" aria-hidden="true"><svg class="icon"><use href="#i-arrow"/></svg></span></a></li>
+            <li><a class="place-row" href="/ministries/adults/" style="--mc: var(--mc-life-groups)"><span class="place-row__name">Groups, Women &amp; Men</span><span class="place-row__desc">Life Groups, Women's Bible Study, Men's Fellowship.</span><span class="place-row__arrow" aria-hidden="true"><svg class="icon"><use href="#i-arrow"/></svg></span></a></li>
+            <li><a class="place-row" href="/ministries/prime-timers/" style="--mc: var(--mc-prime-timers)"><span class="place-row__name">Prime Timers</span><span class="place-row__desc">Our seniors&rsquo; fellowship.</span><span class="place-row__arrow" aria-hidden="true"><svg class="icon"><use href="#i-arrow"/></svg></span></a></li>
+          </ul>
+          <p class="place-index__more"><a class="link-arrow" href="ministries.html">All 12 ministries <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Coming up: three events -->
+  <section class="section" aria-labelledby="events-title">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__intro">
+          <span class="accent-bar" aria-hidden="true"></span>
+          <h2 class="h2 caps" id="events-title">Coming up</h2>
+        </div>
+        <a class="link-arrow" href="/events/">All events <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      <ul class="events">
+        <li>
+          <a class="event" href="/events/mens-breakfast/" style="--mc: var(--mc-men)">
+            <span class="date-tile" aria-hidden="true"><span class="date-tile__mon">Nov</span><span class="date-tile__day">7</span></span>
+            <div>
+              <h3 class="event__title">Men's Breakfast</h3>
+              <span class="event__when"><time datetime="2026-11-07T08:00">Saturday<span class="visually-hidden">, November 7,</span> · 8:00 AM</time></span>
+              <span class="event__tag"><span class="dot" aria-hidden="true"></span>Men's Fellowship</span>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a class="event" href="/events/food-bank-saturday/" style="--mc: var(--mc-food-bank)">
+            <span class="date-tile" aria-hidden="true"><span class="date-tile__mon">Nov</span><span class="date-tile__day">14</span></span>
+            <div>
+              <h3 class="event__title">Food Bank Saturday</h3>
+              <span class="event__when"><time datetime="2026-11-14T09:00">Saturday<span class="visually-hidden">, November 14,</span> · 9:00 AM</time></span>
+              <span class="event__tag"><span class="dot" aria-hidden="true"></span>Food Bank Outreach</span>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a class="event" href="/events/thanksgiving-eve/" style="--mc: var(--mc-everyone)">
+            <span class="date-tile" aria-hidden="true"><span class="date-tile__mon">Nov</span><span class="date-tile__day">25</span></span>
+            <div>
+              <h3 class="event__title">Thanksgiving Eve Service</h3>
+              <span class="event__when"><time datetime="2026-11-25T19:00">Wednesday<span class="visually-hidden">, November 25,</span> · 7:00 PM</time></span>
+              <span class="event__tag"><span class="dot" aria-hidden="true"></span>For everyone</span>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 7. Give and prayer -->
+  <section class="section section--alt" aria-labelledby="give-title">
+    <div class="container give-split">
+      <figure class="photo">
+        <img src="https://images.unsplash.com/photo-1575267685970-7fbabf6ed7b0?auto=format&fit=crop&w=1400&q=80"
+             srcset="https://images.unsplash.com/photo-1575267685970-7fbabf6ed7b0?auto=format&fit=crop&w=900&q=80 900w,
+                     https://images.unsplash.com/photo-1575267685970-7fbabf6ed7b0?auto=format&fit=crop&w=1400&q=80 1400w"
+             sizes="(min-width: 960px) 40vw, 100vw" width="1400" height="1660" loading="lazy"
+             alt="An older woman and a man laughing together outdoors">
+      </figure>
+      <div class="give-split__text">
+        <div class="give-block">
+          <span class="accent-bar" aria-hidden="true"></span>
+          <h2 class="h3 caps" id="give-title">Give with joy</h2>
+          <p class="lead">Giving is part of our worship, and it carries the teaching and care of this church into Westfield.</p>
+          <div class="actions">
+            <a class="btn btn--solid" href="https://example.org/give">Give online <svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+        </div>
+        <div class="give-block">
+          <span class="accent-bar" aria-hidden="true"></span>
+          <h2 class="h3 caps" id="prayer-title">Can we pray for you?</h2>
+          <p class="lead">Our Prayer Ministry would be glad to. Email your request, and tell us if you'd like it kept private.</p>
+          <div class="actions">
+            <a class="btn btn--outline" href="mailto:office@example.org?subject=Prayer%20request"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> Send a request</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer on-dark">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="/" aria-label="Cornerstone Bible Fellowship, home">
+          <svg class="mark" aria-hidden="true" focusable="false"><use href="#mark"/></svg>
+          <span class="logo__words" aria-hidden="true"><span class="logo__name">Cornerstone</span><span class="logo__sub">Bible Fellowship</span></span>
+        </a>
+        <p>A Bible church in Westfield, teaching verse by verse through the Bible.</p>
+      </div>
+      <div class="footer-col">
+        <h2>Visit</h2>
+        <p><strong>Sundays 8:30 and 10:30 AM</strong><br><span class="muted">Wednesdays 7:00 PM, midweek Bible study</span></p>
+        <p>2100 Ridge Road, Westfield<br><span class="muted">Between Oak Street and Highway 9. The main entrance faces the north parking lot; accessible parking is by the front doors.</span></p>
+        <a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=2100+Ridge+Road+Westfield">Get directions <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="footer-col">
+        <h2>Contact</h2>
+        <p><a href="mailto:office@example.org">office@example.org</a></p>
+        <a class="link-arrow" href="https://example.org/give">Give online <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="footer-col">
+        <h2>Explore</h2>
+        <ul class="footer-links">
+          <li><a href="/plan-a-visit/">Plan your visit</a></li>
+          <li><a href="/about/beliefs/">What we believe</a></li>
+          <li><a href="/sermons/">Sermons</a></li>
+          <li><a href="ministries.html">Ministries</a></li>
+          <li><a href="/events/">Events</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Cornerstone Bible Fellowship. A fictional church: this page is a public demo of the church-design skill.</p>
+      <p>Photos from Unsplash by
+        <a href="https://unsplash.com/photos/brown-wooden-pew-bench-tNmHUn39hS0">Donghun Shin</a>,
+        <a href="https://unsplash.com/photos/elderly-couple-waving-hello-in-a-room-w1eDyNeSMi0">Age Cymru</a>,
+        <a href="https://unsplash.com/photos/an-open-book-with-a-pen-on-top-of-it-o36E5X4Uv88">Kelly Sikkema</a>,
+        <a href="https://unsplash.com/photos/two-men-having-conversation-on-table-uR4ICNvIVvM">Ben Moreland</a>, and
+        <a href="https://unsplash.com/photos/man-wearing-white-polo-shirt-hIPexC5pXxg">LOGAN WEAVER</a>.
+        Icons: <a href="https://tabler.io/icons">Tabler Icons</a> (MIT).</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var header = document.getElementById('site-header');
+
+  /* Header: transparent over the hero, solid and shorter after 24px of scroll */
+  function onScroll() { header.classList.toggle('is-solid', window.scrollY > 24); }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* Mobile menu: full screen, outside the header; focus trapped; Esc closes */
+  var menu = document.getElementById('menu');
+  var openBtn = document.getElementById('menu-open');
+  var closeBtn = document.getElementById('menu-close');
+  var main = document.getElementById('main');
+  var footer = document.querySelector('.site-footer');
+  var skip = document.querySelector('.skip-link');
+
+  function focusables() {
+    return Array.prototype.slice.call(menu.querySelectorAll('a[href], button:not([disabled])'));
+  }
+  function setInert(on) {
+    [header, main, footer, skip].forEach(function (el) { if (on) { el.setAttribute('inert', ''); } else { el.removeAttribute('inert'); } });
+  }
+  function openMenu() {
+    menu.classList.add('is-open');
+    document.body.classList.add('menu-open');
+    openBtn.setAttribute('aria-expanded', 'true');
+    setInert(true);
+    closeBtn.focus();
+  }
+  function closeMenu(returnFocus) {
+    menu.classList.remove('is-open');
+    document.body.classList.remove('menu-open');
+    openBtn.setAttribute('aria-expanded', 'false');
+    setInert(false);
+    if (returnFocus !== false) { openBtn.focus(); }
+  }
+  openBtn.addEventListener('click', openMenu);
+  closeBtn.addEventListener('click', function () { closeMenu(); });
+  menu.addEventListener('click', function (e) { if (e.target.closest('a')) { closeMenu(false); } });
+  document.addEventListener('keydown', function (e) {
+    if (!menu.classList.contains('is-open')) return;
+    if (e.key === 'Escape') { closeMenu(); return; }
+    if (e.key === 'Tab') {
+      var items = focusables();
+      var first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+  window.matchMedia('(min-width: 1200px)').addEventListener('change', function (mq) {
+    if (mq.matches && menu.classList.contains('is-open')) { closeMenu(false); }
+  });
+})();
+</script>
+</body>
+</html>

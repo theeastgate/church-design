@@ -1,0 +1,1036 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harbor City Church · Lakeport</title>
+<meta name="description" content="Harbor City Church is one church with two campuses in Lakeport. Downtown at 220 Water Street, Sundays 9:00 and 11:00 AM. Northside at 88 Cedar Avenue, Sundays 10:00 AM. Come as you are.">
+<meta name="theme-color" content="#111111">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3Cmask id='m' maskUnits='userSpaceOnUse' x='0' y='0' width='64' height='64'%3E%3Crect width='64' height='64' fill='%23fff'/%3E%3Cg fill='%23000'%3E%3Cpath d='M25 48 L39 48 L36 25 L28 25 Z'/%3E%3Crect x='26.5' y='20.5' width='11' height='2.8'/%3E%3Crect x='29' y='13' width='6' height='5.8'/%3E%3Cpath d='M28.4 11.6 L32 7 L35.6 11.6 Z'/%3E%3Cpath d='M36.6 14.4 L66 4 L66 27 L36.6 17.6 Z'/%3E%3Cpath d='M-2 47 C7 43 13 43 22 47 S38 51 46 47 S58 43 66 47 L66 52.2 C58 48.2 54 48.2 46 52.2 S30 56.2 22 52.2 S7 48.2 -2 52.2 Z'/%3E%3C/g%3E%3C/mask%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='30' fill='%23111111' mask='url(%23m)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://images.unsplash.com">
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1569292567773-229e2b7521ee?auto=format&fit=crop&w=2400&q=80" imagesrcset="https://images.unsplash.com/photo-1569292567773-229e2b7521ee?auto=format&fit=crop&w=900&q=80 900w, https://images.unsplash.com/photo-1569292567773-229e2b7521ee?auto=format&fit=crop&w=1400&q=80 1400w, https://images.unsplash.com/photo-1569292567773-229e2b7521ee?auto=format&fit=crop&w=2400&q=80 2400w" imagesizes="100vw">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Church",
+      "@id": "#downtown",
+      "name": "Harbor City Church, Downtown",
+      "email": "hello@example.org",
+      "address": { "@type": "PostalAddress", "streetAddress": "220 Water Street", "addressLocality": "Lakeport" }
+    },
+    {
+      "@type": "Church",
+      "@id": "#northside",
+      "name": "Harbor City Church, Northside",
+      "email": "hello@example.org",
+      "address": { "@type": "PostalAddress", "streetAddress": "88 Cedar Avenue", "addressLocality": "Lakeport" }
+    },
+    { "@type": "Event", "name": "Baptism Sunday", "startDate": "2026-11-08", "location": [{ "@id": "#downtown" }, { "@id": "#northside" }] },
+    { "@type": "Event", "name": "Serve Lakeport Day", "startDate": "2026-11-14T09:00", "location": { "@type": "Place", "name": "Lakeport" } }
+  ]
+}
+</script>
+
+<style>
+/* ==========================================================================
+   Tokens: brand constants from MINISTRY.md. Components below use only these.
+   ========================================================================== */
+:root {
+  /* Type: a grotesque superfamily, tight cut for display, text cut for body */
+  --font-display: "Inter Tight", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --weight-body: 400;
+  --weight-medium: 500;
+  --weight-ui: 600;
+  --weight-bold: 700;
+  --weight-display: 800;
+
+  --text-sm: 0.875rem;                                    /* eyebrows only */
+  --text-ui: 1rem;                                        /* buttons, nav, labels */
+  --text-base: 1.125rem;                                  /* body: 18px */
+  --text-lg: 1.375rem;                                    /* leads, row titles on phones */
+  --text-xl: clamp(1.5rem, 1.2rem + 1.2vw, 1.875rem);
+  --text-2xl: clamp(1.875rem, 1.3rem + 2.2vw, 2.75rem);   /* index names, card times */
+  --text-3xl: clamp(2.375rem, 1.4rem + 3.8vw, 4.25rem);   /* h2: 1.333 scale, bold direction */
+  --text-hero: clamp(3rem, 0.6rem + 6.6vw, 6.75rem);      /* h1: ~7vw; longest line is 6.5em, so it stays inside the 0.66 scrim zone */
+  --text-giant: 15vw;                                     /* "welcome." divider */
+
+  --leading-tight: 1.02;
+  --leading-snug: 1.15;
+  --leading-body: 1.6;
+  --tracking-display: -0.035em;
+  --tracking-heading: -0.02em;
+  --tracking-caps: 0.14em;
+  --measure: 60ch;
+
+  /* Color roles */
+  --color-ink: #111111;
+  --color-ink-muted: #5c5c5c;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f4f4f2;
+  --color-primary: #111111;
+  --color-on-primary: #ffffff;
+  --color-on-primary-muted: #a6a6a6;
+  --color-accent: #ff5b14;                                /* Beacon orange: rare */
+  --color-on-accent: #111111;
+  --color-hairline: rgb(17 17 17 / 0.12);
+  --color-hairline-on-dark: rgb(255 255 255 / 0.16);
+  --color-focus: #111111;
+  --color-focus-on-dark: #ffffff;
+
+  /* Overlay: one treatment (dark scrim). Text sits only where it is 0.66 or more. */
+  --scrim-strong: rgb(0 0 0 / 0.7);
+  --scrim-hold: rgb(0 0 0 / 0.66);
+  --scrim-soft: rgb(0 0 0 / 0.15);
+  --scrim-header: linear-gradient(to bottom, rgb(0 0 0 / 0.6) 0, rgb(0 0 0 / 0.6) 5rem, rgb(0 0 0 / 0) 11rem);
+  --photo-grade: contrast(1.05) saturate(0.92);
+
+  /* Spacing (4px base) */
+  --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem;
+  --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem;
+  --space-12: 3rem; --space-16: 4rem; --space-24: 6rem; --space-32: 8rem;
+  --section-y: clamp(5rem, 2.5rem + 7vw, 9.5rem);
+  --container: 1180px;
+  --gutter: clamp(20px, 6vw, 112px);
+  --split-gap: clamp(3rem, 1rem + 6vw, 8rem);
+  --bento-gap: 10px;
+
+  /* Radius family: 8 / 16 / pill */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-pill: 999px;
+  --radius-photo: var(--radius-sm);
+  --radius-button: var(--radius-pill);
+
+  /* Elevation and motion */
+  --shadow-card: 0 2px 4px rgb(0 0 0 / 0.06), 0 24px 48px rgb(0 0 0 / 0.14);
+  --shadow-menu: 0 1px 0 var(--color-hairline);
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --duration-ui: 200ms;
+  --duration-reveal: 600ms;
+
+  --header-h: 5.5rem;
+  --header-h-solid: 4.5rem;
+  --button-h: 3.25rem;
+}
+
+@media (max-width: 719px) {
+  :root { --header-h: 4.25rem; --header-h-solid: 4.25rem; --bento-gap: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --duration-ui: 0ms; --duration-reveal: 0ms; }
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--header-h-solid); -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-weight: var(--weight-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  color: var(--color-ink);
+  background: var(--color-surface);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+body.menu-open { overflow: hidden; }
+img { display: block; max-width: 100%; height: auto; }
+h1, h2, h3 { word-spacing: 0.04em; margin: 0; font-family: var(--font-display); font-weight: var(--weight-display); line-height: var(--leading-snug); letter-spacing: var(--tracking-heading); text-wrap: balance; }
+p { margin: 0; }
+.display, .index-name, .campus-time, .event-day, .event-title, .series-word, .giant, .logo-word, .menu-links a, .verse p { font-family: var(--font-display); }
+a { color: inherit; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; border-radius: 4px; }
+.on-dark :focus-visible,
+.hero :focus-visible,
+.site-header:not(.is-solid) :focus-visible,
+.menu :focus-visible { outline-color: var(--color-focus-on-dark); }
+
+.skip-link {
+  position: absolute; left: var(--space-4); top: -100px; z-index: 100;
+  background: var(--color-primary); color: var(--color-on-primary);
+  padding: var(--space-3) var(--space-6); border-radius: var(--radius-button);
+  font-size: var(--text-ui); font-weight: var(--weight-ui); text-decoration: none;
+}
+.skip-link:focus { top: var(--space-4); }
+
+.visually-hidden {
+  position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.container { width: 100%; max-width: calc(var(--container) + 2 * var(--gutter)); margin-inline: auto; padding-inline: var(--gutter); }
+.section { padding-block: var(--section-y); }
+.on-dark { background: var(--color-primary); color: var(--color-on-primary); }
+
+.icon { width: 1.25em; height: 1.25em; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.photo { width: 100%; height: 100%; object-fit: cover; filter: var(--photo-grade); border-radius: var(--radius-photo); background: var(--color-surface-alt); }
+.on-dark .photo { background: #1c1c1c; }
+
+/* ==========================================================================
+   Section rhythm: eyebrow → 24px → headline → 24–32px → body → 32–40px → action
+   ========================================================================== */
+.eyebrow {
+  font-family: var(--font); line-height: var(--leading-body);
+  display: flex; align-items: center; gap: var(--space-3);
+  margin-bottom: var(--space-6);
+  font-size: var(--text-sm); font-weight: var(--weight-ui);
+  letter-spacing: var(--tracking-caps); text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+.eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--color-accent); flex: none; }
+.on-dark .eyebrow { color: var(--color-accent); }
+.hero .eyebrow { color: var(--color-on-primary); }
+
+.h2 { font-size: var(--text-3xl); line-height: var(--leading-tight); letter-spacing: var(--tracking-heading); }
+.lead { margin-top: var(--space-8); font-size: var(--text-base); max-width: var(--measure); color: var(--color-ink-muted); }
+.on-dark .lead { color: var(--color-on-primary-muted); }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-6); margin-top: var(--space-10); }
+
+/* Buttons: one shape (pill), two styles (solid, outline), plus a text link */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+  min-height: var(--button-h); padding: 0 var(--space-8);
+  border: 2px solid transparent; border-radius: var(--radius-button);
+  font: var(--weight-ui) var(--text-ui)/1 var(--font);
+  text-decoration: none; white-space: nowrap; cursor: pointer;
+  transition: background-color var(--duration-ui) var(--ease-out), color var(--duration-ui) var(--ease-out), border-color var(--duration-ui) var(--ease-out);
+}
+.btn .icon { width: 1.125em; height: 1.125em; }
+.btn-solid { background: var(--color-primary); color: var(--color-on-primary); }
+.btn-solid:hover { background: #2a2a2a; }
+.btn-outline { border-color: var(--color-ink); color: var(--color-ink); background: transparent; }
+.btn-outline:hover { background: var(--color-ink); color: var(--color-on-primary); }
+.on-dark .btn-solid, .hero .btn-solid, .menu .btn-solid { background: var(--color-on-primary); color: var(--color-ink); }
+.on-dark .btn-solid:hover, .hero .btn-solid:hover, .menu .btn-solid:hover { background: #e9e9e9; }
+.on-dark .btn-outline, .hero .btn-outline, .menu .btn-outline { border-color: var(--color-on-primary); color: var(--color-on-primary); }
+.on-dark .btn-outline:hover, .hero .btn-outline:hover, .menu .btn-outline:hover { background: var(--color-on-primary); color: var(--color-ink); }
+
+.text-link {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  min-height: 44px;
+  font-size: var(--text-ui); font-weight: var(--weight-bold);
+  text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px;
+  text-decoration-color: var(--color-hairline);
+  transition: text-decoration-color var(--duration-ui) var(--ease-out);
+}
+.text-link:hover { text-decoration-color: currentColor; }
+.on-dark .text-link { text-decoration-color: var(--color-hairline-on-dark); }
+.on-dark .text-link:hover { text-decoration-color: currentColor; }
+
+/* ==========================================================================
+   Header (transparent over the hero, solid after 24px of scroll)
+   ========================================================================== */
+.site-header {
+  position: fixed; inset: 0 0 auto 0; z-index: 50;
+  color: var(--color-on-primary);
+  transition: background-color var(--duration-ui) var(--ease-out), color var(--duration-ui) var(--ease-out), box-shadow var(--duration-ui) var(--ease-out);
+}
+.site-header.is-solid { background: var(--color-surface); color: var(--color-ink); box-shadow: var(--shadow-menu); }
+.header-inner { display: flex; align-items: center; gap: var(--space-6); height: var(--header-h); transition: height var(--duration-ui) var(--ease-out); }
+.is-solid .header-inner { height: var(--header-h-solid); }
+
+.logo { display: inline-flex; align-items: center; gap: var(--space-3); text-decoration: none; min-height: 44px; margin-right: auto; }
+.logo svg { width: 2.25rem; height: 2.25rem; flex: none; }
+.logo-word { font-weight: var(--weight-display); font-size: 1.25rem; letter-spacing: -0.03em; line-height: 1; white-space: nowrap; }
+.logo-word span { font-weight: var(--weight-medium); }
+@media (max-width: 419px) { .site-header .logo-word span { display: none; } }
+
+.nav { display: none; }
+.nav ul { display: flex; align-items: center; gap: var(--space-1); }
+.nav a:not(.btn) {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 var(--space-3);
+  font-size: var(--text-ui); font-weight: var(--weight-ui); text-decoration: none;
+  border-radius: var(--radius-button);
+}
+.nav a:not(.btn):hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }
+.header-actions { display: flex; align-items: center; gap: var(--space-2); }
+.header-actions .btn { min-height: 44px; padding: 0 var(--space-5); }
+.site-header:not(.is-solid) .header-actions .btn-solid { background: var(--color-on-primary); color: var(--color-ink); }
+.site-header:not(.is-solid) .header-actions .btn-outline { border-color: var(--color-on-primary); color: var(--color-on-primary); }
+.site-header:not(.is-solid) .header-actions .btn-outline:hover { background: var(--color-on-primary); color: var(--color-ink); }
+.header-visit { display: none !important; }
+
+.menu-toggle {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 48px; height: 48px; border: 0; border-radius: 50%;
+  background: transparent; color: inherit; cursor: pointer;
+}
+.menu-toggle .icon { width: 28px; height: 28px; }
+
+@media (min-width: 720px) {
+  .header-visit { display: inline-flex !important; }
+}
+@media (min-width: 1180px) {
+  .nav { display: block; }
+  .menu-toggle { display: none; }
+}
+
+/* Mobile menu: a sibling of the header, so position:fixed covers the screen */
+.menu {
+  position: fixed; inset: 0; z-index: 60;
+  background: var(--color-primary); color: var(--color-on-primary);
+  display: flex; flex-direction: column;
+  overflow-y: auto;
+  visibility: hidden; opacity: 0;
+  transition: opacity var(--duration-ui) var(--ease-out), visibility 0s linear var(--duration-ui);
+}
+.menu.is-open { visibility: visible; opacity: 1; transition: opacity var(--duration-ui) var(--ease-out); }
+.menu-top { display: flex; align-items: center; height: var(--header-h); }
+.menu-pinned { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); margin-top: var(--space-6); }
+.menu-pinned .btn { width: 100%; }
+.menu-links { margin-top: var(--space-8); border-top: 1px solid var(--color-hairline-on-dark); }
+.menu-links a {
+  display: flex; align-items: center; justify-content: space-between; min-height: 64px;
+  font-size: var(--text-xl); font-weight: var(--weight-display); letter-spacing: var(--tracking-heading);
+  text-decoration: none; border-bottom: 1px solid var(--color-hairline-on-dark);
+}
+.menu-foot { margin-top: auto; padding-block: var(--space-10); color: var(--color-on-primary-muted); font-size: var(--text-ui); }
+.menu-foot p + p { margin-top: var(--space-2); }
+
+/* ==========================================================================
+   Hero: full-bleed photo, scrim anchored to the text column
+   ========================================================================== */
+.hero {
+  position: relative; isolation: isolate;
+  min-height: 640px; height: 92svh; max-height: 940px;
+  color: var(--color-on-primary); background: var(--color-primary);
+  display: flex; align-items: flex-end;
+  --hero-scrim-stop: 76%;
+}
+.hero-media { position: absolute; inset: 0; z-index: -2; overflow: hidden; }
+.hero-media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 44%; filter: var(--photo-grade); }
+/* Phones: the text sits at the top over the arch; the scrim holds 0.66 behind it and fades
+   below, so the faces on the steps stay clear. */
+.hero::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background:
+    var(--scrim-header),
+    linear-gradient(to bottom, var(--scrim-strong) 0%, var(--scrim-hold) var(--hero-scrim-stop), rgb(0 0 0 / 0) calc(var(--hero-scrim-stop) + 14%));
+}
+.hero-content { width: 100%; padding-top: calc(var(--header-h) + var(--space-8)); padding-bottom: var(--space-12); align-self: flex-start; }
+.hero h1 {
+  font-size: var(--text-hero); line-height: 0.96; letter-spacing: var(--tracking-display);
+}
+.hero h1 .line { display: block; }
+.hero h1 { word-spacing: 0.08em; } /* heavy type with tight tracking runs words together; keep the gaps visible */
+@media (min-width: 720px) { .hero h1 .line { white-space: nowrap; } }
+.hero-sub { margin-top: var(--space-6); max-width: 34ch; font-size: var(--text-base); font-weight: var(--weight-medium); }
+.hero .actions { margin-top: var(--space-8); }
+
+@media (min-width: 720px) and (max-width: 1099px) {
+  .hero { height: 86svh; min-height: 600px; }
+}
+@media (min-width: 1100px) {
+  .hero .hero-content { padding-bottom: calc(var(--card-overlap) + var(--space-16)); }
+}
+@media (min-width: 720px) {
+  .hero { align-items: flex-end; }
+  .hero-content { align-self: flex-end; padding-top: calc(var(--header-h) + var(--space-8)); padding-bottom: calc(var(--card-overlap) + var(--space-10)); }
+  .hero-media img { object-position: 50% 42%; }
+  /* Desktop: left-to-right scrim. It holds at 0.66 from the viewport edge to the end of the
+     text column (container offset + 60% of the container), then fades to 0.15. */
+  .hero::before {
+    --text-end: calc(max(var(--gutter), (100% - var(--container)) / 2) + min(var(--container), 100% - 2 * var(--gutter)) * 0.6);
+    background:
+      var(--scrim-header),
+      linear-gradient(to right, var(--scrim-strong) 0, var(--scrim-hold) var(--text-end), var(--scrim-soft) 100%);
+  }
+  .hero-text { max-width: 60%; }
+}
+
+/* One motion moment: headline lines rise in on load */
+@keyframes rise { from { opacity: 0; transform: translateY(0.35em); } to { opacity: 1; transform: none; } }
+.js .hero h1 .line { animation: rise var(--duration-reveal) var(--ease-out) both; }
+.js .hero h1 .line:nth-child(2) { animation-delay: 90ms; }
+.js .hero h1 .line:nth-child(3) { animation-delay: 180ms; }
+
+/* ==========================================================================
+   Floating service card: both campuses, times as a statement
+   ========================================================================== */
+:root { --card-overlap: 0px; }
+@media (min-width: 720px) { :root { --card-overlap: 5rem; } }
+@media (min-width: 1100px) { :root { --card-overlap: 7.5rem; } }
+
+.times { position: relative; z-index: 2; }
+.service-card {
+  background: var(--color-surface); color: var(--color-ink);
+  border-radius: var(--radius-md); box-shadow: var(--shadow-card);
+  padding: var(--space-8) var(--space-6);
+  display: grid; gap: var(--space-8);
+}
+.service-intro .eyebrow { margin-bottom: var(--space-3); }
+.service-intro p { color: var(--color-ink-muted); }
+.service-intro .text-link { margin-top: var(--space-3); color: var(--color-ink); }
+.campus { border-top: 1px solid var(--color-hairline); padding-top: var(--space-6); }
+.campus h3 { font-size: var(--text-ui); font-weight: var(--weight-ui); letter-spacing: 0; color: var(--color-ink-muted); }
+.campus-time { margin-top: var(--space-1); font-size: var(--text-2xl); font-weight: var(--weight-display); line-height: 1.05; letter-spacing: var(--tracking-display); }
+.campus-time small { font-size: 0.5em; letter-spacing: 0; font-weight: var(--weight-display); }
+.campus-facts { margin-top: var(--space-4); display: grid; gap: var(--space-2); font-size: var(--text-ui); }
+.campus-facts li { display: flex; gap: var(--space-3); align-items: flex-start; }
+.campus-facts .icon { margin-top: 0.15em; width: 1.125rem; height: 1.125rem; }
+.campus .text-link { margin-top: var(--space-2); }
+
+@media (max-width: 719px) {
+  .times { margin-top: calc(-1 * var(--space-8)); }
+}
+@media (min-width: 720px) {
+  .times { margin-top: calc(-1 * var(--card-overlap)); }
+  .service-card { grid-template-columns: 1fr 1fr; padding: var(--space-10); column-gap: var(--space-10); }
+  .service-intro { grid-column: 1 / -1; display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-6); }
+  .service-intro .text-link { margin-top: 0; }
+}
+@media (min-width: 1100px) {
+  .service-card { grid-template-columns: 1.05fr 1fr 1fr; padding: var(--space-12) var(--space-12); column-gap: var(--space-12); }
+  .service-intro { grid-column: auto; display: block; }
+  .service-intro .text-link { margin-top: var(--space-4); }
+  .campus { border-top: 0; padding-top: 0; border-left: 1px solid var(--color-hairline); padding-left: var(--space-12); }
+}
+
+/* ==========================================================================
+   First Sunday: split, three promises on hairlines, then the "welcome." divider
+   ========================================================================== */
+.first { padding-bottom: 0; }
+.split { display: grid; gap: var(--space-12); align-items: center; }
+/* Two columns only where both halves balance; stacked below 1100px (foundations: balance) */
+@media (min-width: 1100px) {
+  .split { grid-template-columns: 1fr 1fr; gap: var(--split-gap); }
+}
+.promises { margin-top: var(--space-8); border-top: 1px solid var(--color-hairline); }
+.promises li { padding-block: var(--space-5); border-bottom: 1px solid var(--color-hairline); }
+.promises h3 { font-size: var(--text-lg); letter-spacing: -0.01em; }
+.promises p { margin-top: var(--space-1); color: var(--color-ink-muted); max-width: 48ch; }
+.first-photo { aspect-ratio: 1 / 1; }
+.first-photo img { object-position: 64% 50%; }
+@media (min-width: 720px) and (max-width: 1099px) { .first-photo { aspect-ratio: 16 / 10; } }
+@media (min-width: 1100px) { .first-photo { aspect-ratio: 4 / 5; } }
+
+.giant {
+  margin-top: var(--space-16);
+  height: 0.6em; overflow: hidden;
+  font-size: var(--text-giant); font-weight: var(--weight-display);
+  line-height: 0.8; letter-spacing: -0.055em;
+  color: var(--color-primary);
+  white-space: nowrap; user-select: none;
+}
+.giant span { display: block; margin-left: -0.04em; }
+
+/* ==========================================================================
+   Scripture band (dark): the mark's one watermark
+   ========================================================================== */
+.scripture { position: relative; overflow: hidden; }
+.scripture .watermark {
+  position: absolute; z-index: 0; right: -9vw; top: 50%; transform: translateY(-50%);
+  width: clamp(360px, 52vw, 860px); height: auto; aspect-ratio: 1;
+  color: var(--color-on-primary); opacity: 0.06; pointer-events: none;
+}
+.scripture .container { position: relative; z-index: 1; }
+.verse { margin: 0; }
+.verse p { max-width: 21ch; font-size: clamp(1.875rem, 1rem + 2.9vw, 3.5rem); font-weight: var(--weight-display); line-height: var(--leading-snug); letter-spacing: var(--tracking-heading); }
+.verse footer { margin-top: var(--space-8); font-size: var(--text-base); font-weight: var(--weight-ui); color: var(--color-on-primary-muted); }
+
+/* ==========================================================================
+   Find your place: intro beside a hairline index of five
+   ========================================================================== */
+.place-grid { display: grid; gap: var(--space-12); }
+@media (min-width: 1100px) {
+  .place-grid { grid-template-columns: 5fr 7fr; gap: var(--split-gap); align-items: center; }
+}
+.index { border-top: 1px solid var(--color-hairline); }
+.index a {
+  display: grid; grid-template-columns: 1fr auto; align-items: center; gap: var(--space-4);
+  padding: var(--space-5) var(--space-2);
+  border-bottom: 1px solid var(--color-hairline);
+  text-decoration: none;
+  transition: background-color var(--duration-ui) var(--ease-out);
+}
+.index a:hover { background: var(--color-surface-alt); }
+.index-name { display: block; font-size: var(--text-2xl); font-weight: var(--weight-display); letter-spacing: var(--tracking-heading); line-height: 1.1; }
+.index-desc { display: block; margin-top: var(--space-1); color: var(--color-ink-muted); font-size: var(--text-base); }
+.circle {
+  display: inline-grid; place-items: center; width: 48px; height: 48px; border-radius: 50%;
+  border: 2px solid var(--color-ink); color: var(--color-ink);
+  transition: background-color var(--duration-ui) var(--ease-out), border-color var(--duration-ui) var(--ease-out);
+}
+.index a:hover .circle, .index a:focus-visible .circle, .event-row a:hover .circle, .event-row a:focus-visible .circle { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-on-accent); }
+
+/* ==========================================================================
+   Latest message (dark): typographic series art, no unrelated photo
+   ========================================================================== */
+.message-grid { display: grid; gap: var(--space-12); align-items: center; }
+.message-grid .series-art { max-width: 760px; }
+@media (max-width: 559px) { .message-grid .series-art { aspect-ratio: 4 / 3; } }
+@media (min-width: 1100px) { .message-grid { grid-template-columns: 5fr 7fr; gap: var(--split-gap); } }
+.message-meta { margin-top: var(--space-6); display: grid; gap: var(--space-1); color: var(--color-on-primary-muted); }
+.message-meta strong { color: var(--color-on-primary); font-weight: var(--weight-ui); }
+.series-art {
+  position: relative; display: block; aspect-ratio: 16 / 9; overflow: hidden;
+  background: var(--color-surface); color: var(--color-ink);
+  border-radius: var(--radius-photo); text-decoration: none;
+  container-type: inline-size;
+}
+.series-label { position: absolute; left: 6cqi; top: 6cqi; font-size: var(--text-sm); font-weight: var(--weight-ui); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--color-ink-muted); }
+.series-word {
+  position: absolute; left: 5.5cqi; top: 50%; transform: translateY(-50%);
+  font-size: 15.4cqi; font-weight: var(--weight-display); letter-spacing: -0.05em; line-height: 1; white-space: nowrap;
+}
+.series-word .faint { color: #d6d6d6; }
+.series-word .cursor { display: inline-block; width: 0.08em; height: 0.78em; margin: 0 0.04em 0 0.02em; background: var(--color-accent); vertical-align: -0.04em; }
+.watch-pill {
+  position: absolute; left: 6cqi; bottom: 6cqi;
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  min-height: 44px; padding: 0 var(--space-5); border-radius: var(--radius-button);
+  background: var(--color-primary); color: var(--color-on-primary);
+  font-size: var(--text-ui); font-weight: var(--weight-ui);
+  transition: background-color var(--duration-ui) var(--ease-out);
+}
+.watch-pill .icon { width: 1em; height: 1em; fill: currentColor; }
+.series-art:hover .watch-pill { background: #2a2a2a; }
+.series-art:focus-visible { outline-offset: 4px; }
+
+/* ==========================================================================
+   Coming up: typographic list on hairlines
+   ========================================================================== */
+.section-head { display: grid; gap: var(--space-6); align-items: end; margin-bottom: var(--space-12); }
+@media (min-width: 900px) { .section-head { grid-template-columns: 1fr auto; } }
+.events { border-top: 2px solid var(--color-ink); }
+.event-row a {
+  display: grid; grid-template-columns: 5.5rem 1fr auto; gap: var(--space-4) var(--space-6); align-items: center;
+  padding-block: var(--space-8); border-bottom: 1px solid var(--color-hairline); text-decoration: none;
+}
+.event-date { line-height: 1; }
+.event-day { display: block; font-size: var(--text-3xl); font-weight: var(--weight-display); letter-spacing: var(--tracking-display); line-height: 0.9; }
+.event-month { display: block; white-space: nowrap; margin-top: var(--space-2); font-size: var(--text-sm); font-weight: var(--weight-ui); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--color-ink-muted); }
+.event-title { display: block; font-size: var(--text-xl); font-weight: var(--weight-display); letter-spacing: var(--tracking-heading); line-height: 1.15; }
+.event-detail { display: block; margin-top: var(--space-1); color: var(--color-ink-muted); }
+@media (min-width: 900px) {
+  .event-row a { grid-template-columns: 9rem 1fr 1fr auto; gap: var(--space-8); }
+  .event-detail { margin-top: 0; }
+}
+@media (max-width: 559px) {
+  .event-row a { grid-template-columns: 5.75rem 1fr; grid-template-areas: "date title" "date detail"; row-gap: var(--space-1); align-items: start; }
+  .event-date { grid-area: date; }
+  .event-title { grid-area: title; }
+  .event-detail { grid-area: detail; margin-top: 0; }
+  .event-row .circle { display: none; }
+}
+
+/* ==========================================================================
+   Baptism feature (dark): photo bento, tight gaps, one small radius
+   ========================================================================== */
+.bento-head { display: grid; gap: var(--space-8); margin-bottom: var(--space-12); }
+@media (min-width: 900px) {
+  .bento-head { grid-template-columns: 1fr 1fr; gap: var(--split-gap); align-items: end; }
+  .bento-head .lead { margin-top: 0; }
+}
+.bento { display: grid; gap: var(--bento-gap); grid-template-columns: repeat(2, 1fr); grid-auto-rows: 42vw; }
+.bento figure { margin: 0; position: relative; }
+.bento .b1 { grid-column: span 2; grid-row: span 1; }
+.bento .b2 { grid-column: span 2; }
+@media (min-width: 720px) {
+  .bento { grid-template-columns: repeat(4, 1fr); grid-auto-rows: clamp(200px, 19vw, 300px); }
+  .bento .b1 { grid-column: 1 / span 2; grid-row: 1 / span 2; }
+  .bento .b2 { grid-column: 3 / span 2; grid-row: 1; }
+  .bento .b3 { grid-column: 3; grid-row: 2; }
+  .bento .b4 { grid-column: 4; grid-row: 2; }
+}
+.bento .b1 img { object-position: 50% 40%; }
+.bento .b2 img { object-position: 50% 30%; }
+.bento .b3 img { object-position: 45% 30%; }
+.bento .b4 img { object-position: 60% 50%; }
+
+/* ==========================================================================
+   Give and prayer
+   ========================================================================== */
+.give-first { margin-top: var(--space-8); }
+.give-first .actions { margin-top: var(--space-8); }
+.give-block + .give-block { margin-top: var(--space-10); padding-top: var(--space-10); border-top: 1px solid var(--color-hairline); }
+.give-block h3 { font-size: var(--text-xl); letter-spacing: var(--tracking-heading); }
+.give-block p { margin-top: var(--space-3); color: var(--color-ink-muted); max-width: 44ch; }
+.give-block .text-link { margin-top: var(--space-2); }
+.give-photo { aspect-ratio: 5 / 4; }
+.give-photo img { object-position: 68% 40%; }
+@media (min-width: 720px) and (max-width: 1099px) { .give-photo { aspect-ratio: 16 / 10; } }
+@media (min-width: 1100px) { .give-photo { aspect-ratio: 4 / 5; } }
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-footer { padding-top: var(--space-24); padding-bottom: var(--space-12); font-size: var(--text-ui); }
+.site-footer a { text-decoration: none; }
+.site-footer a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.footer-grid { display: grid; gap: var(--space-12); }
+@media (min-width: 720px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1100px) { .footer-grid { grid-template-columns: 1.4fr 1fr 1fr 0.8fr; gap: var(--space-10); } }
+.footer-brand .logo { color: var(--color-on-primary); }
+.footer-brand p { margin-top: var(--space-4); color: var(--color-on-primary-muted); max-width: 30ch; }
+.footer-brand .actions { margin-top: var(--space-6); }
+.site-footer h2 { font-size: var(--text-ui); font-weight: var(--weight-display); letter-spacing: 0; margin-bottom: var(--space-3); }
+.footer-col p, .footer-col li { color: var(--color-on-primary-muted); }
+.footer-col p + p { margin-top: var(--space-2); }
+.footer-col .strong { color: var(--color-on-primary); font-weight: var(--weight-ui); }
+.footer-links li a { display: inline-flex; align-items: center; min-height: 44px; color: var(--color-on-primary); }
+.footer-col a.inline { color: var(--color-on-primary); text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--color-hairline-on-dark); display: inline-flex; align-items: center; min-height: 44px; }
+.footer-base { margin-top: var(--space-16); padding-top: var(--space-8); border-top: 1px solid var(--color-hairline-on-dark); color: var(--color-on-primary-muted); display: grid; gap: var(--space-3); }
+.footer-base a { color: var(--color-on-primary); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--color-hairline-on-dark); }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <mask id="harbor-light" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
+      <rect width="64" height="64" fill="#fff"/>
+      <g fill="#000">
+        <path d="M25 48 L39 48 L36 25 L28 25 Z"/>
+        <rect x="26.5" y="20.5" width="11" height="2.8"/>
+        <rect x="29" y="13" width="6" height="5.8"/>
+        <path d="M28.4 11.6 L32 7 L35.6 11.6 Z"/>
+        <path d="M36.6 14.4 L66 4 L66 27 L36.6 17.6 Z"/>
+        <path d="M-2 47 C7 43 13 43 22 47 S38 51 46 47 S58 43 66 47 L66 52.2 C58 48.2 54 48.2 46 52.2 S30 56.2 22 52.2 S7 48.2 -2 52.2 Z"/>
+      </g>
+    </mask>
+    <symbol id="mark" viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="currentColor" mask="url(#harbor-light)"/></symbol>
+    <!-- Lucide icons (ISC License), 2px stroke -->
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-car" viewBox="0 0 24 24"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+  </defs>
+</svg>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" id="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="index.html" aria-label="Harbor City Church, home">
+      <svg aria-hidden="true" focusable="false"><use href="#mark"/></svg>
+      <span class="logo-word">Harbor City <span>Church</span></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <ul>
+        <li><a href="visit.html">Visit</a></li>
+        <li><a href="locations.html">Locations</a></li>
+        <li><a href="ministries.html">Next steps</a></li>
+        <li><a href="sermons.html">Watch</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn-outline" href="https://example.org/give">Give</a>
+      <a class="btn btn-solid header-visit" href="visit.html">Plan your visit</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu">
+        <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+  <div class="container">
+    <div class="menu-top">
+      <a class="logo" href="index.html" aria-label="Harbor City Church, home">
+        <svg aria-hidden="true" focusable="false"><use href="#mark"/></svg>
+        <span class="logo-word">Harbor City <span>Church</span></span>
+      </a>
+      <button class="menu-toggle menu-close" type="button" aria-label="Close menu">
+        <svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>
+      </button>
+    </div>
+    <div class="menu-pinned">
+      <a class="btn btn-solid" href="visit.html">Plan your visit</a>
+      <a class="btn btn-outline" href="https://example.org/give">Give online</a>
+    </div>
+    <nav class="menu-links" aria-label="Main (mobile)">
+      <a href="visit.html">Visit <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a href="locations.html">Locations <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a href="ministries.html">Next steps <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a href="sermons.html">Watch <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a href="events.html">Events <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a href="about.html">About <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </nav>
+    <div class="menu-foot">
+      <p>Downtown · 220 Water Street · Sundays 9:00 &amp; 11:00 AM</p>
+      <p>Northside · 88 Cedar Avenue · Sundays 10:00 AM</p>
+    </div>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- 1. Hero -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-media">
+      <img
+        src="https://images.unsplash.com/photo-1569292567773-229e2b7521ee?auto=format&fit=crop&w=2400&q=80"
+        srcset="https://images.unsplash.com/photo-1569292567773-229e2b7521ee?auto=format&fit=crop&w=900&q=80 900w,
+                https://images.unsplash.com/photo-1569292567773-229e2b7521ee?auto=format&fit=crop&w=1400&q=80 1400w,
+                https://images.unsplash.com/photo-1569292567773-229e2b7521ee?auto=format&fit=crop&w=2400&q=80 2400w"
+        sizes="100vw" width="2400" height="3584" fetchpriority="high"
+        alt="A crowd of young adults laughing and posing on the steps outside a church's arched front door">
+    </div>
+    <div class="container hero-content">
+      <div class="hero-text">
+        <p class="eyebrow">Two campuses in Lakeport</p>
+        <h1 id="hero-title"><span class="line">You don’t have</span> <span class="line">to have it</span> <span class="line">figured out.</span></h1>
+        <p class="hero-sub">Harbor City is one church in two Lakeport neighborhoods. Come as you are this Sunday.</p>
+        <div class="actions">
+          <a class="btn btn-solid" href="visit.html">Plan your visit</a>
+          <a class="btn btn-outline" href="sermons.html#start-where-you-are">Watch the latest</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating service card: both campuses, times as a statement -->
+  <section class="times container" aria-labelledby="times-title">
+    <div class="service-card">
+      <div class="service-intro">
+        <div>
+          <h2 class="eyebrow" id="times-title">Sundays at Harbor</h2>
+          <p>Two campuses, one church. Every service is about 70 minutes.</p>
+        </div>
+        <a class="text-link" href="locations.html">Compare locations <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="campus">
+        <h3>Downtown</h3>
+        <p class="campus-time">9 &amp; 11 <small>AM</small></p>
+        <ul class="campus-facts">
+          <li><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span>220 Water Street, Lakeport</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-car"/></svg><span>Free parking in the Water Street garage</span></li>
+        </ul>
+        <a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query=220+Water+Street+Lakeport" aria-label="Get directions to the Downtown campus">Get directions <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="campus">
+        <h3>Northside</h3>
+        <p class="campus-time">10 <small>AM</small></p>
+        <ul class="campus-facts">
+          <li><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span>88 Cedar Avenue, Lakeport</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-car"/></svg><span>Free parking in the Cedar Ave lot</span></li>
+        </ul>
+        <a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query=88+Cedar+Avenue+Lakeport" aria-label="Get directions to the Northside campus">Get directions <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. First Sunday -->
+  <section class="section first" aria-labelledby="first-title">
+    <div class="container">
+      <div class="split">
+        <div>
+          <p class="eyebrow">Your first Sunday</p>
+          <h2 class="h2" id="first-title">Walk in. Grab a coffee. Find a seat.</h2>
+          <ul class="promises">
+            <li>
+              <h3>About 70 minutes</h3>
+              <p>A full band leads modern worship, then a message from the Bible.</p>
+            </li>
+            <li>
+              <h3>Come as you are</h3>
+              <p>Jeans are perfect. There’s a coffee bar in the lobby.</p>
+            </li>
+            <li>
+              <h3>Kids have their own space</h3>
+              <p>Harbor Kids check-in opens 15 minutes before each service.</p>
+            </li>
+          </ul>
+          <div class="actions">
+            <a class="btn btn-solid" href="visit.html">Plan your visit</a>
+          </div>
+        </div>
+        <div class="first-photo">
+          <img class="photo"
+            src="https://images.unsplash.com/photo-1639444337390-7ed38655a417?auto=format&fit=crop&w=1400&q=80"
+            srcset="https://images.unsplash.com/photo-1639444337390-7ed38655a417?auto=format&fit=crop&w=900&q=80 900w,
+                    https://images.unsplash.com/photo-1639444337390-7ed38655a417?auto=format&fit=crop&w=1400&q=80 1400w"
+            sizes="(min-width: 900px) 50vw, 100vw" width="1400" height="933" loading="lazy"
+            alt="Two young men laughing together, one holding a drink">
+        </div>
+      </div>
+    </div>
+    <div class="container" aria-hidden="true">
+      <div class="giant"><span>welcome.</span></div>
+    </div>
+  </section>
+
+  <!-- 3. Scripture -->
+  <section class="on-dark section scripture" aria-labelledby="scripture-title">
+    <svg class="watermark" aria-hidden="true" focusable="false"><use href="#mark"/></svg>
+    <div class="container">
+      <h2 class="eyebrow" id="scripture-title">A new start</h2>
+      <blockquote class="verse">
+        <p>“Therefore, if anyone is in Christ, he is a new creation; old things have passed away; behold, all things have become new.”</p>
+        <footer>2 Corinthians 5:17 NKJV</footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- 4. Find your place -->
+  <section class="section" id="next-steps" aria-labelledby="place-title">
+    <div class="container place-grid">
+      <div>
+        <p class="eyebrow">Next steps</p>
+        <h2 class="h2" id="place-title">There’s a place for every age here.</h2>
+        <p class="lead">Find people at your stage of life, and a way to use what you’re good at.</p>
+        <div class="actions">
+          <a class="text-link" href="ministries.html">See all next steps <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+      <ul class="index">
+        <li><a href="ministries.html#kids"><span><span class="index-name">Harbor Kids</span><span class="index-desc">Birth to 5th grade, during every service</span></span><span class="circle" aria-hidden="true"><svg class="icon"><use href="#i-arrow"/></svg></span></a></li>
+        <li><a href="ministries.html#students"><span><span class="index-name">Harbor Students</span><span class="index-desc">6th to 12th grade</span></span><span class="circle" aria-hidden="true"><svg class="icon"><use href="#i-arrow"/></svg></span></a></li>
+        <li><a href="ministries.html#young-adults"><span><span class="index-name">Young Adults</span><span class="index-desc">Ages 18 to 29</span></span><span class="circle" aria-hidden="true"><svg class="icon"><use href="#i-arrow"/></svg></span></a></li>
+        <li><a href="ministries.html#groups"><span><span class="index-name">Groups</span><span class="index-desc">Get to know a few people well</span></span><span class="circle" aria-hidden="true"><svg class="icon"><use href="#i-arrow"/></svg></span></a></li>
+        <li><a href="ministries.html#serve"><span><span class="index-name">Serve Team</span><span class="index-desc">Use your gifts on Sundays and around Lakeport</span></span><span class="circle" aria-hidden="true"><svg class="icon"><use href="#i-arrow"/></svg></span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 5. Latest message -->
+  <section class="on-dark section" id="message" aria-labelledby="message-title">
+    <div class="container message-grid">
+      <div>
+        <p class="eyebrow">Latest message</p>
+        <h2 class="h2" id="message-title">Start Where You Are</h2>
+        <p class="message-meta">
+          <span>Part of the series <strong>Unfinished</strong></span>
+          <span>Pastor Marcus Allen · October 25, 2026</span>
+        </p>
+        <div class="actions">
+          <a class="text-link" href="sermons.html">All messages <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+      <a class="series-art" href="sermons.html#start-where-you-are" aria-label="Watch Start Where You Are, from the series Unfinished">
+        <span class="series-label" aria-hidden="true">A series</span>
+        <span class="series-word" aria-hidden="true">Unfinish<span class="cursor"></span><span class="faint">ed</span></span>
+        <span class="watch-pill" aria-hidden="true"><svg class="icon"><use href="#i-play"/></svg>Watch</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 6. Coming up -->
+  <section class="section" id="events" aria-labelledby="events-title">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Coming up</p>
+          <h2 class="h2" id="events-title">Save these dates.</h2>
+        </div>
+        <a class="text-link" href="events.html">All events <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      <ul class="events">
+        <li class="event-row">
+          <a href="events.html#baptism-sunday">
+            <span class="event-date"><span class="event-day">08</span><span class="event-month">Nov · Sun</span></span>
+            <span class="event-title">Baptism Sunday</span>
+            <span class="event-detail">At all services, both campuses</span>
+            <span class="circle" aria-hidden="true"><svg class="icon"><use href="#i-arrow"/></svg></span>
+          </a>
+        </li>
+        <li class="event-row">
+          <a href="events.html#serve-lakeport">
+            <span class="event-date"><span class="event-day">14</span><span class="event-month">Nov · Sat</span></span>
+            <span class="event-title">Serve Lakeport Day</span>
+            <span class="event-detail">9:00 AM · A morning serving our city</span>
+            <span class="circle" aria-hidden="true"><svg class="icon"><use href="#i-arrow"/></svg></span>
+          </a>
+        </li>
+        <li class="event-row">
+          <a href="events.html#christmas">
+            <span class="event-date"><span class="event-day">01</span><span class="event-month">Dec · Tue</span></span>
+            <span class="event-title">Christmas at Harbor</span>
+            <span class="event-detail">Tickets open December&nbsp;1</span>
+            <span class="circle" aria-hidden="true"><svg class="icon"><use href="#i-arrow"/></svg></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 7. Baptism feature -->
+  <section class="on-dark section" id="baptism" aria-labelledby="baptism-title">
+    <div class="container">
+      <div class="bento-head">
+        <div>
+          <p class="eyebrow">Baptism Sunday · November 8</p>
+          <h2 class="h2" id="baptism-title">New starts, out loud.</h2>
+        </div>
+        <div>
+          <p class="lead">Baptism is a public way to say you’re following Jesus. If you’re ready, or just curious, we’d love to talk with you.</p>
+          <div class="actions">
+            <a class="btn btn-solid" href="mailto:hello@example.org?subject=Baptism%20Sunday">Ask about baptism</a>
+          </div>
+        </div>
+      </div>
+      <div class="bento">
+        <figure class="b1">
+          <img class="photo" src="https://images.unsplash.com/photo-1640116646340-24b23157f06d?auto=format&fit=crop&w=1400&q=80"
+            srcset="https://images.unsplash.com/photo-1640116646340-24b23157f06d?auto=format&fit=crop&w=900&q=80 900w, https://images.unsplash.com/photo-1640116646340-24b23157f06d?auto=format&fit=crop&w=1400&q=80 1400w"
+            sizes="(min-width: 720px) 50vw, 100vw" width="1400" height="933" loading="lazy"
+            alt="Two men standing waist-deep in the sea at dusk, about to baptize">
+        </figure>
+        <figure class="b2">
+          <img class="photo" src="https://images.unsplash.com/photo-1663230910616-8381f5d5190d?auto=format&fit=crop&w=1400&q=80"
+            srcset="https://images.unsplash.com/photo-1663230910616-8381f5d5190d?auto=format&fit=crop&w=900&q=80 900w, https://images.unsplash.com/photo-1663230910616-8381f5d5190d?auto=format&fit=crop&w=1400&q=80 1400w"
+            sizes="(min-width: 720px) 50vw, 100vw" width="1400" height="934" loading="lazy"
+            alt="A man just baptized in a pool throws his arms up as two friends celebrate beside him">
+        </figure>
+        <figure class="b3">
+          <img class="photo" src="https://images.unsplash.com/photo-1563902341721-029085ad9347?auto=format&fit=crop&w=900&q=80"
+            width="900" height="600" loading="lazy" sizes="(min-width: 720px) 25vw, 50vw"
+            alt="Young adults singing and cheering together outdoors">
+        </figure>
+        <figure class="b4">
+          <img class="photo" src="https://images.unsplash.com/photo-1583162061967-eacb13d913a2?auto=format&fit=crop&w=900&q=80"
+            width="900" height="600" loading="lazy" sizes="(min-width: 720px) 25vw, 50vw"
+            alt="Hands playing a red keyboard during worship">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Give and prayer -->
+  <section class="section" id="give" aria-labelledby="give-title">
+    <div class="container split">
+      <div>
+        <p class="eyebrow">Give &amp; prayer</p>
+        <h2 class="h2" id="give-title">Be part of what God is doing in Lakeport.</h2>
+        <div class="give-block give-first">
+          <p>Give online any time, from anywhere. Thank you for your generosity.</p>
+          <div class="actions">
+            <a class="btn btn-solid" href="https://example.org/give">Give online</a>
+          </div>
+        </div>
+        <div class="give-block">
+          <h3>How can we pray for you?</h3>
+          <p>Tell us what’s going on. Email is the easiest way to reach us.</p>
+          <a class="text-link" href="mailto:hello@example.org?subject=Prayer%20request">Send a prayer request <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+      <div class="give-photo">
+        <img class="photo" src="https://images.unsplash.com/photo-1609234656381-73e732808098?auto=format&fit=crop&w=1400&q=80"
+          srcset="https://images.unsplash.com/photo-1609234656381-73e732808098?auto=format&fit=crop&w=900&q=80 900w, https://images.unsplash.com/photo-1609234656381-73e732808098?auto=format&fit=crop&w=1400&q=80 1400w"
+          sizes="(min-width: 900px) 50vw, 100vw" width="1400" height="933" loading="lazy"
+          alt="People gathered in a church lobby, two men resting a hand on a friend's shoulders">
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer on-dark">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="index.html" aria-label="Harbor City Church, home">
+          <svg aria-hidden="true" focusable="false"><use href="#mark"/></svg>
+          <span class="logo-word">Harbor City <span>Church</span></span>
+        </a>
+        <p>One church, two campuses, all of Lakeport.</p>
+        <div class="actions">
+          <a class="btn btn-solid" href="https://example.org/give">Give online</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h2>Downtown</h2>
+        <p class="strong">Sundays 9:00 &amp; 11:00 AM</p>
+        <p>220 Water Street, Lakeport</p>
+        <p>Free parking in the Water Street garage</p>
+      </div>
+      <div class="footer-col">
+        <h2>Northside</h2>
+        <p class="strong">Sundays 10:00 AM</p>
+        <p>88 Cedar Avenue, Lakeport</p>
+        <p>Free parking in the Cedar Ave lot</p>
+        <p><a class="inline" href="mailto:hello@example.org">hello@example.org</a></p>
+      </div>
+      <nav class="footer-col" aria-label="Footer">
+        <h2>Explore</h2>
+        <ul class="footer-links">
+          <li><a href="visit.html">Plan your visit</a></li>
+          <li><a href="ministries.html">Next steps</a></li>
+          <li><a href="sermons.html">Watch</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="about.html#beliefs">What we believe</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer-base">
+      <p>Photos on <a href="https://unsplash.com/license">Unsplash</a> by
+        <a href="https://unsplash.com/photos/people-outside-house-W8dP1Ra04lU">Joel Mott</a>,
+        <a href="https://unsplash.com/photos/a-couple-of-men-sitting-next-to-each-other-NZTIa0zKzdA">Nate Johnston</a>,
+        <a href="https://unsplash.com/photos/a-couple-of-men-standing-in-a-body-of-water-klk3Lt75K_o">Arquidis molina</a>,
+        <a href="https://unsplash.com/photos/a-group-of-people-in-a-pool-FV7ghF0MknM">AMONWAT DUMKRUT</a>,
+        <a href="https://unsplash.com/photos/people-cheering-during-day-VsGWBczIg20">Kyle Smith</a>,
+        <a href="https://unsplash.com/photos/person-playing-red-and-black-electric-piano-4qnhBQv4qcg">Kelly Sikkema</a>, and
+        <a href="https://unsplash.com/photos/people-in-black-and-brown-jackets-standing-in-front-of-people-W5oBN7u4yfw">adrianna geo</a>.
+        Icons by <a href="https://lucide.dev">Lucide</a>.</p>
+      <p>Harbor City Church and Lakeport are fictional. This page is a demo of the church-design skill’s Bold Contemporary direction.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  document.documentElement.classList.add('js');
+
+  // Header: transparent over the hero, solid after 24px
+  var header = document.getElementById('site-header');
+  function onScroll() { header.classList.toggle('is-solid', window.scrollY > 24); }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Mobile menu (outside the header so it covers the screen)
+  var menu = document.getElementById('menu');
+  var openBtn = header.querySelector('.menu-toggle');
+  var closeBtn = menu.querySelector('.menu-close');
+  var lastFocus = null;
+  function focusables() { return menu.querySelectorAll('a[href], button:not([disabled])'); }
+  function openMenu() {
+    lastFocus = document.activeElement;
+    menu.hidden = false;
+    requestAnimationFrame(function () { menu.classList.add('is-open'); });
+    document.body.classList.add('menu-open');
+    openBtn.setAttribute('aria-expanded', 'true');
+    closeBtn.focus();
+  }
+  function closeMenu() {
+    menu.classList.remove('is-open');
+    document.body.classList.remove('menu-open');
+    openBtn.setAttribute('aria-expanded', 'false');
+    var delay = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 200;
+    setTimeout(function () { if (!menu.classList.contains('is-open')) menu.hidden = true; }, delay);
+    if (lastFocus) lastFocus.focus();
+  }
+  openBtn.addEventListener('click', openMenu);
+  closeBtn.addEventListener('click', closeMenu);
+  menu.addEventListener('click', function (e) { if (e.target.closest('a')) closeMenu(); });
+  document.addEventListener('keydown', function (e) {
+    if (menu.hidden) return;
+    if (e.key === 'Escape') { closeMenu(); return; }
+    if (e.key === 'Tab') {
+      var f = focusables(), first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+  window.matchMedia('(min-width: 1180px)').addEventListener('change', function (mq) { if (mq.matches && !menu.hidden) closeMenu(); });
+})();
+</script>
+</body>
+</html>

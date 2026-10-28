@@ -1,0 +1,67 @@
+/* church-design tokens: replace values with the brand constants in MINISTRY.md.
+   Defaults shown are the warm-editorial starting point. */
+
+:root {
+  /* Type */
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* 18px base shown. For older audiences use the 20px column in foundations.md. */
+  --text-sm: 0.875rem;                                   /* letterspaced eyebrows, captions */
+  --text-ui: 1rem;                                       /* buttons, nav, labels: 16px floor */
+  --text-base: 1.125rem;                                 /* body */
+  --text-lg: 1.375rem;
+  --text-xl: clamp(1.5rem, 1.2rem + 1.2vw, 1.75rem);
+  --text-2xl: clamp(1.875rem, 1.4rem + 2vw, 2.25rem);
+  --text-3xl: clamp(2.25rem, 1.5rem + 3.2vw, 3rem);
+  --text-4xl: clamp(2.75rem, 1.6rem + 5vw, 4.5rem);
+
+  --leading-tight: 1.1;
+  --leading-body: 1.6;
+  --tracking-caps: 0.1em;
+  --measure: 65ch;
+
+  /* Color roles */
+  --color-ink: #1e2b4a;
+  --color-ink-muted: #545a66;
+  --color-surface: #fbf8f3;
+  --color-surface-alt: #f1ece3;
+  --color-primary: #1e2b4a;
+  --color-accent: #2456c7;
+  --color-support: #6e6857;                              /* optional quiet panels; never actions */
+  --color-on-primary: #ffffff;
+  --color-on-accent: #ffffff;
+  --color-on-support: #fbf5e6;
+  --color-season: var(--color-accent);                   /* liturgical churches: see direction file */
+  --color-focus: #2456c7;
+
+  /* Overlay (pick one treatment sitewide).
+     Apply the scrim to the text block's container so the darkest part is
+     behind the text; text must never sit in the faded part. */
+  --overlay-scrim: linear-gradient(to top, rgb(10 14 25 / 0.78) 0%, rgb(10 14 25 / 0.72) 55%, rgb(10 14 25 / 0) 100%);
+
+  /* Spacing (4px base) */
+  --space-1: 0.25rem;  --space-2: 0.5rem;  --space-3: 0.75rem; --space-4: 1rem;
+  --space-6: 1.5rem;   --space-8: 2rem;    --space-12: 3rem;   --space-16: 4rem;
+  --space-24: 6rem;    --space-32: 8rem;
+  --section-y: clamp(5rem, 2.5rem + 7vw, 9.5rem);   /* generous; see foundations "White space" */
+  --container: 1160px;                              /* content width; gutters are separate */
+  --gutter: clamp(20px, 6vw, 112px);
+
+  /* Radius family */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
+  --radius-button: var(--radius-pill);                   /* one button shape sitewide */
+
+  /* Elevation and motion */
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px rgb(0 0 0 / 0.06);
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --duration-ui: 200ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --duration-ui: 0ms; }
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

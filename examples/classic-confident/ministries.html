@@ -1,0 +1,948 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ministries · Cornerstone Bible Fellowship</title>
+<meta name="description" content="Twelve ministries at Cornerstone Bible Fellowship in Westfield, grouped for kids and students, adults, care, and serving. Find where you fit.">
+<meta name="theme-color" content="#1c3559">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='%231c3559'%3E%3Crect x='4' y='4' width='29.5' height='15' rx='1'/%3E%3Crect x='36' y='4' width='24' height='15' rx='1'/%3E%3Crect x='4' y='21.5' width='15' height='12' rx='1'/%3E%3Crect x='4' y='36' width='24' height='24' rx='1'/%3E%3Crect x='30.5' y='45' width='29.5' height='15' rx='1'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://images.unsplash.com">
+
+
+<style>
+/* ==========================================================================
+   1. TOKENS
+   Brand constants from MINISTRY.md (Classic Confident). Every component
+   below uses these variables only: no raw hex values or one-off font sizes.
+   For the WordPress classic theme, move this :root block into the child
+   theme stylesheet unchanged.
+   ========================================================================== */
+:root {
+  /* Type families */
+  --font-display: "Archivo", "Helvetica Neue", Arial, system-ui, sans-serif;  /* 700 caps headings, 600 UI caps */
+  --font-body: "Source Sans 3", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  /* Type scale: 20px base column (older audience), ratio 1.25 */
+  --text-sm: 0.9375rem;                                   /* letterspaced eyebrows, chips, captions only */
+  --text-ui: 1.0625rem;                                   /* buttons, nav, labels: 17px */
+  --text-base: 1.25rem;                                   /* body: 20px */
+  --text-lg: 1.5rem;                                      /* lead, row titles */
+  --text-xl: clamp(1.625rem, 1.3rem + 1.3vw, 1.875rem);   /* h4 */
+  --text-2xl: clamp(2rem, 1.5rem + 2.2vw, 2.5rem);        /* h3 */
+  --text-3xl: clamp(2.5rem, 1.6rem + 3.5vw, 3.25rem);     /* h2 */
+  --text-4xl: clamp(3rem, 1.8rem + 5vw, 4.75rem);         /* h1, hero */
+
+  --leading-tight: 1.06;
+  --leading-snug: 1.25;
+  --leading-body: 1.6;
+  --tracking-heading: 0.03em;                             /* caps headings */
+  --tracking-ui: 0.08em;                                  /* buttons, nav */
+  --tracking-eyebrow: 0.14em;                             /* eyebrows, chips */
+  --stretch-display: 108%;                                /* Archivo width axis */
+  --measure: 65ch;
+
+  /* Color roles */
+  --color-ink: #13213a;
+  --color-ink-muted: #525b69;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f3f1ec;                           /* "stone" */
+  --color-primary: #1c3559;                               /* Ridge navy */
+  --color-primary-deep: #0f1c31;                          /* times bar, footer */
+  --color-accent: #a14a1f;                                /* kiln rust: actions, bars, one accent word */
+  --color-accent-light: #f2b88e;                          /* the accent on dark grounds only */
+  --color-on-primary: #ffffff;
+  --color-on-accent: #ffffff;
+  --color-on-dark-muted: #c3cad6;
+  --color-rule: #d8d4cb;                                  /* decorative hairlines only */
+  --color-rule-dark: rgb(255 255 255 / 0.18);
+  --color-focus: var(--color-accent);
+
+  /* Ministry colors (ministry-hub layer, planned). White text passes 4.5:1 on each.
+     Use only on that ministry's cards, hero, and as small event dots. */
+  --mc-kids: #17706f;
+  --mc-youth: #5b3d91;
+  --mc-young-adults: #2b5a9e;
+  --mc-women: #8e3560;
+  --mc-men: #3e4c5e;
+  --mc-life-groups: #2e6a43;
+  --mc-prime-timers: #7f501a;
+  --mc-prayer: #3b3f86;
+  --mc-grief: #64476e;
+  --mc-food-bank: #596320;
+  --mc-worship-tech: #1f4e6b;
+  --mc-hospitality: #9a2f3d;
+  --mc-everyone: var(--color-primary);
+
+  /* Overlay: one treatment sitewide. Full navy tint over a grayscale photo.
+     Passes on its own over a white photo (white text 8.59:1). */
+  --overlay-tint: rgb(22 43 74 / 0.84);
+  --photo-tint-filter: grayscale(1) contrast(1.05);
+  --photo-duotone-filter: url(#duotone);                  /* navy-to-stone; SVG filter in the sprite */
+
+  /* Spacing (4px base) */
+  --space-1: 0.25rem;  --space-2: 0.5rem;  --space-3: 0.75rem; --space-4: 1rem;
+  --space-5: 1.25rem;  --space-6: 1.5rem;  --space-8: 2rem;    --space-10: 2.5rem;
+  --space-12: 3rem;    --space-16: 4rem;   --space-24: 6rem;   --space-32: 8rem;
+  --section-y: clamp(5rem, 2.5rem + 7vw, 9.5rem);
+  --section-head-gap: clamp(2.5rem, 1.5rem + 3vw, 4.5rem);   /* section head to content */
+  --split-gap: clamp(2.5rem, 0.5rem + 6vw, 7rem);             /* 64 to 112px at desktop */
+  --row-gap: clamp(1.5rem, 1rem + 1.5vw, 3rem);               /* 24 to 48px between items */
+  --container: 1160px;
+  --gutter: clamp(20px, 6vw, 112px);
+  --header-h: 88px;
+  --header-h-solid: 72px;
+
+  /* Radius family: crisp 2 / 4 / 8, no pill */
+  --radius-sm: 2px;                                       /* chips, tags, dots */
+  --radius-md: 4px;                                       /* buttons, fields, date tiles */
+  --radius-lg: 8px;                                       /* photos, panels */
+  --radius-button: var(--radius-md);
+
+  /* Buttons */
+  --button-h: 52px;
+  --accent-bar-w: 40px;
+  --accent-bar-h: 3px;
+
+  /* Elevation and motion */
+  --shadow-header: 0 1px 0 var(--color-rule), 0 6px 20px rgb(19 33 58 / 0.06);
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --duration-ui: 200ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --duration-ui: 0ms; }
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* ==========================================================================
+   2. BASE
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h-solid) + var(--space-4)); -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+body.menu-open { overflow: hidden; }
+img { display: block; max-width: 100%; }
+p { margin: 0; }
+a { color: inherit; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+h1, h2, h3, h4 { margin: 0; font-family: var(--font-display); font-weight: 700; font-stretch: var(--stretch-display); line-height: var(--leading-tight); }
+
+/* Caps headings: one line at desktop, two at most on a phone */
+.caps { text-transform: uppercase; letter-spacing: var(--tracking-heading); }
+.h1 { font-size: var(--text-4xl); }
+.h2 { font-size: var(--text-3xl); }
+.h3 { font-size: var(--text-2xl); }
+.h4 { font-size: var(--text-xl); }
+
+:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; border-radius: var(--radius-sm); }
+.on-dark { --color-focus: var(--color-accent-light); color: var(--color-on-primary); }
+
+.skip-link {
+  position: absolute; left: var(--space-4); top: -100px; z-index: 100;
+  background: var(--color-surface); color: var(--color-ink);
+  padding: var(--space-3) var(--space-4); border-radius: var(--radius-md);
+  font: 600 var(--text-ui)/1 var(--font-display); text-decoration: none;
+}
+.skip-link:focus { top: var(--space-4); }
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ==========================================================================
+   3. LAYOUT PRIMITIVES
+   ========================================================================== */
+.container { width: min(100% - 2 * var(--gutter), var(--container)); margin-inline: auto; }
+.section { padding-block: var(--section-y); }
+.section--alt { background: var(--color-surface-alt); }
+
+.split { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--split-gap); }
+@media (min-width: 960px) {
+  .split { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; }
+  .split--stretch { align-items: stretch; }
+}
+
+/* Section rhythm: accent bar → 24px → headline → 24–32px → body → 32–40px → action */
+.accent-bar { display: block; width: var(--accent-bar-w); height: var(--accent-bar-h); background: var(--color-accent); margin-bottom: var(--space-6); }
+.on-dark .accent-bar { background: var(--color-accent-light); }
+.lead { margin-top: var(--space-6); font-size: var(--text-base); color: var(--color-ink-muted); max-width: 40ch; }
+.actions { margin-top: var(--space-10); display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-4); align-items: center; }
+
+.section-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--space-6) var(--space-12); margin-bottom: var(--section-head-gap); }
+.section-head__intro .lead { max-width: 44ch; }
+.section-head > .lead { margin-top: 0; max-width: 40ch; }
+
+/* ==========================================================================
+   4. COMPONENTS
+   ========================================================================== */
+/* Icons: Tabler outline, 2px stroke, currentColor */
+.icon { width: 1.25em; height: 1.25em; flex: none; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Buttons: one shape (4px), two styles. Caps, three words or fewer. */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-3);
+  min-height: var(--button-h); padding: 0 var(--space-6);
+  border: 2px solid transparent; border-radius: var(--radius-button);
+  font-family: var(--font-display); font-weight: 600; font-size: var(--text-ui); font-stretch: var(--stretch-display);
+  text-transform: uppercase; letter-spacing: var(--tracking-ui); line-height: 1;
+  text-decoration: none; cursor: pointer; white-space: nowrap;
+  transition: background-color var(--duration-ui) var(--ease-out), color var(--duration-ui) var(--ease-out), border-color var(--duration-ui) var(--ease-out);
+}
+.btn .icon { width: 1.25rem; height: 1.25rem; transition: transform var(--duration-ui) var(--ease-out); }
+.btn:hover .icon--arrow { transform: translateX(3px); }
+.btn--solid { background: var(--color-accent); color: var(--color-on-accent); }
+.btn--solid:hover { background: var(--color-ink); }
+.on-dark .btn--solid:hover, .on-tint .btn--solid:hover { background: var(--color-on-primary); color: var(--color-ink); }
+.btn--outline { border-color: var(--color-ink); color: var(--color-ink); background: transparent; }
+.btn--outline:hover { background: var(--color-ink); color: var(--color-surface); }
+.on-dark .btn--outline, .on-tint .btn--outline { border-color: var(--color-on-primary); color: var(--color-on-primary); }
+.on-dark .btn--outline:hover, .on-tint .btn--outline:hover { background: var(--color-on-primary); color: var(--color-ink); }
+
+/* Third tier: caps text link with arrow */
+.link-arrow {
+  display: inline-flex; align-items: center; gap: var(--space-2); min-height: 44px;
+  font-family: var(--font-display); font-weight: 600; font-size: var(--text-ui); font-stretch: var(--stretch-display);
+  text-transform: uppercase; letter-spacing: var(--tracking-ui);
+  color: var(--color-accent); text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) 0 calc(100% - 8px) / 100% 2px no-repeat;
+  transition: background-size var(--duration-ui) var(--ease-out);
+}
+.link-arrow .icon { transition: transform var(--duration-ui) var(--ease-out); }
+.link-arrow:hover .icon { transform: translateX(3px); }
+.link-arrow:hover { background-size: 0% 2px; }
+.on-dark .link-arrow { color: var(--color-accent-light); }
+
+/* Eyebrow: caps label, one line */
+.eyebrow { font-family: var(--font-display); font-weight: 600; font-size: var(--text-sm); font-stretch: var(--stretch-display); text-transform: uppercase; letter-spacing: var(--tracking-eyebrow); color: var(--color-ink-muted); }
+.on-dark .eyebrow, .on-tint .eyebrow { color: var(--color-accent-light); }
+
+/* Book-of-the-Bible chip */
+.chip {
+  display: inline-flex; align-items: center; padding: var(--space-1) var(--space-3);
+  border: 1.5px solid currentColor; border-radius: var(--radius-sm);
+  font-family: var(--font-display); font-weight: 700; font-size: var(--text-sm); font-stretch: var(--stretch-display);
+  text-transform: uppercase; letter-spacing: var(--tracking-eyebrow); line-height: 1.4;
+}
+
+/* Ministry dot (event tags): a small squared stone, echoing the mark */
+.dot { display: inline-block; width: 0.75rem; height: 0.75rem; border-radius: var(--radius-sm); background: var(--mc, var(--mc-everyone)); flex: none; }
+
+/* Photos: crisp 8px corners; tint, duotone, or untinted */
+.photo { position: relative; margin: 0; border-radius: var(--radius-lg); overflow: hidden; background: var(--color-primary); }
+.photo img { width: 100%; height: 100%; object-fit: cover; }
+.photo--duotone img { filter: var(--photo-duotone-filter); }
+.tinted { position: relative; isolation: isolate; }
+.tinted > .tinted__media { position: absolute; inset: 0; z-index: -1; background: var(--color-primary); }
+.tinted > .tinted__media img { width: 100%; height: 100%; object-fit: cover; filter: var(--photo-tint-filter); }
+.tinted > .tinted__media::after { content: ""; position: absolute; inset: 0; background: var(--overlay-tint); }
+.on-tint { --color-focus: var(--color-accent-light); color: var(--color-on-primary); }
+
+/* Mark */
+.mark { width: 1em; height: 1em; fill: currentColor; flex: none; }
+
+/* ==========================================================================
+   5. HEADER AND MOBILE MENU
+   The menu sits outside the header so position: fixed covers the screen.
+   ========================================================================== */
+.site-header {
+  position: fixed; inset: 0 0 auto 0; z-index: 50;
+  color: var(--color-on-primary); --color-focus: var(--color-accent-light);
+  transition: background-color var(--duration-ui) var(--ease-out), color var(--duration-ui) var(--ease-out), box-shadow var(--duration-ui) var(--ease-out);
+}
+.site-header__inner { height: var(--header-h); display: flex; align-items: center; gap: var(--space-6); transition: height var(--duration-ui) var(--ease-out); }
+.site-header.is-solid { background: var(--color-surface); color: var(--color-ink); box-shadow: var(--shadow-header); --color-focus: var(--color-accent); }
+.site-header.is-solid .site-header__inner { height: var(--header-h-solid); }
+
+.logo { display: inline-flex; align-items: center; gap: var(--space-3); text-decoration: none; margin-right: auto; min-height: 48px; }
+.logo .mark { font-size: 2.5rem; }
+.site-header.is-solid .logo .mark { color: var(--color-primary); }
+.logo__words { display: flex; flex-direction: column; line-height: 1; font-family: var(--font-display); text-transform: uppercase; }
+.logo__name { font-weight: 700; font-size: 1.125rem; font-stretch: 112%; letter-spacing: 0.06em; }
+.logo__sub { margin-top: 0.3rem; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.24em; }
+
+.nav { display: none; }
+.nav ul { display: flex; gap: var(--space-1); }
+.nav a, .header-give {
+  display: inline-flex; align-items: center; min-height: 48px; padding: 0 var(--space-3);
+  font-family: var(--font-display); font-weight: 600; font-size: var(--text-ui); font-stretch: var(--stretch-display);
+  text-transform: uppercase; letter-spacing: var(--tracking-ui); text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) center calc(100% - 10px) / 0% 2px no-repeat;
+  transition: background-size var(--duration-ui) var(--ease-out);
+}
+.nav a:hover, .header-give:hover { background-size: calc(100% - 1.5rem) 2px; }
+.header-actions { display: flex; align-items: center; gap: var(--space-2); }
+.header-visit { display: none; }
+.site-header:not(.is-solid) .header-visit { --color-on-accent: var(--color-on-primary); }
+
+.menu-toggle {
+  display: inline-flex; align-items: center; gap: var(--space-2); min-height: 48px; min-width: 48px; padding: 0 var(--space-3);
+  background: transparent; color: inherit; border: 2px solid currentColor; border-radius: var(--radius-button);
+  font: 600 var(--text-ui)/1 var(--font-display); font-stretch: var(--stretch-display); text-transform: uppercase; letter-spacing: var(--tracking-ui); cursor: pointer;
+}
+.menu-toggle .icon { width: 1.375rem; height: 1.375rem; }
+
+@media (min-width: 720px) { .header-visit { display: inline-flex; } }
+@media (max-width: 419px) {
+  .menu-toggle__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .site-header__inner { gap: var(--space-2); }
+  .logo { gap: var(--space-2); }
+  .logo .mark { font-size: 2.125rem; }
+  .logo__name { font-size: 1rem; letter-spacing: 0.04em; }
+  .logo__sub { font-size: 0.6875rem; letter-spacing: 0.16em; }
+  .header-give { padding: 0 var(--space-2); }
+}
+@media (min-width: 1200px) {
+  .nav { display: block; }
+  .header-give { display: none; }
+  .menu-toggle { display: none; }
+}
+
+.menu {
+  position: fixed; inset: 0; z-index: 60; overflow-y: auto;
+  background: var(--color-primary); color: var(--color-on-primary);
+  visibility: hidden; opacity: 0;
+  transition: opacity var(--duration-ui) var(--ease-out), visibility 0s linear var(--duration-ui);
+}
+.menu.is-open { visibility: visible; opacity: 1; transition: opacity var(--duration-ui) var(--ease-out), visibility 0s; }
+.menu__top { height: var(--header-h-solid); display: flex; align-items: center; }
+.menu__pinned { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); margin-top: var(--space-6); }
+.menu__pinned .btn { padding: 0 var(--space-3); }
+@media (max-width: 479px) { .menu__pinned { grid-template-columns: minmax(0, 1fr); } }
+.menu__links { margin-top: var(--space-8); border-top: 1px solid var(--color-rule-dark); }
+.menu__links a {
+  display: flex; align-items: center; justify-content: space-between; min-height: 64px;
+  border-bottom: 1px solid var(--color-rule-dark); text-decoration: none;
+  font-family: var(--font-display); font-weight: 700; font-size: var(--text-xl); font-stretch: var(--stretch-display);
+  text-transform: uppercase; letter-spacing: var(--tracking-heading);
+}
+.menu__links .icon { color: var(--color-accent-light); }
+.menu__info { margin-block: var(--space-8) var(--space-12); color: var(--color-on-dark-muted); font-size: var(--text-ui); line-height: 1.6; }
+.menu__info strong { color: var(--color-on-primary); font-weight: 600; }
+
+
+/* ==========================================================================
+   6. SHARED SECTIONS (copied unchanged from the homepage)
+   ========================================================================== */
+/* --- Verse band: navy, one verse, mark watermark bleeding off the edge --- */
+.verse-band { position: relative; overflow: hidden; background: var(--color-primary); }
+.verse-band__mark { position: absolute; right: -6%; top: 50%; width: clamp(22rem, 12rem + 30vw, 40rem); height: auto; aspect-ratio: 1; transform: translateY(-50%); color: var(--color-on-primary); opacity: 0.06; pointer-events: none; }
+.verse { position: relative; margin: 0; }
+.verse p { font-family: var(--font-display); font-weight: 500; font-stretch: 100%; font-size: var(--text-3xl); line-height: var(--leading-snug); letter-spacing: -0.005em; max-width: 24ch; }
+.verse footer { margin-top: var(--space-8); }
+.verse cite { font-style: normal; font-family: var(--font-display); font-weight: 600; font-size: var(--text-ui); font-stretch: var(--stretch-display); text-transform: uppercase; letter-spacing: var(--tracking-eyebrow); color: var(--color-accent-light); }
+/* Fix: the mark symbol has no fill of its own, so give the watermark its white (6%) explicitly */
+.verse-band__mark { fill: currentColor; }
+
+/* ==========================================================================
+   7. MINISTRY HUB LAYER
+   Adds ministry colors (--mc-* above), a mark family drawn from the church's
+   stone blocks, ministry cards, and a grouped directory. Everything else
+   (type, radius, buttons, overlay, rhythm) is the site's brand constants.
+   ========================================================================== */
+:root {
+  --watermark-opacity: 0.09;                              /* 6 to 10% per the layer; never above 12% */
+  --card-pad: clamp(1.5rem, 1rem + 1.5vw, 2.5rem);
+  --card-gap: var(--space-6);
+  --card-min-h: clamp(17rem, 14rem + 7vw, 23rem);
+}
+
+/* Inner page: the header is solid from the top (no photo hero under it) */
+body.inner { padding-top: var(--header-h-solid); }
+.nav a[aria-current="page"] { background-size: calc(100% - 1.5rem) 2px; }
+.menu__links a[aria-current="page"] { color: var(--color-accent-light); }
+
+/* --- Hero: stone ground, typographic, with the wall of ministry stones --- */
+.mh-hero { background: var(--color-surface-alt); }
+.mh-hero__body { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-12); align-items: center; padding-block: clamp(3.5rem, 1.5rem + 4vw, 5.5rem); }
+.mh-hero .eyebrow { margin-bottom: var(--space-6); }
+.mh-hero__title { font-size: var(--text-4xl); }
+.mh-hero .accent-word { color: var(--color-accent); }
+.mh-hero .lead { font-size: var(--text-lg); line-height: 1.45; max-width: 30ch; margin-top: var(--space-8); }
+@media (min-width: 960px) {
+  .mh-hero__body { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: var(--split-gap); }
+}
+
+/* The wall: twelve ministry stones laid on the cornerstone, each carrying its
+   mark the way masons cut a mark into the stones they set. Decorative. */
+.wall { display: block; width: 100%; max-width: 34rem; height: auto; justify-self: end; }
+.wall__stone { fill: var(--mc); }
+.wall__mark { color: var(--color-on-primary); }
+.wall__cmark { color: var(--color-on-primary); fill: currentColor; }
+
+/* --- Group bar: attached to the hero like the homepage times bar --- */
+.group-bar { background: var(--color-primary-deep); color: var(--color-on-primary); }
+.group-bar__list { display: grid; grid-template-columns: minmax(0, 1fr); padding-block: var(--space-4); }
+.group-link { display: block; min-height: 48px; padding-block: var(--space-4); text-decoration: none; }
+.group-bar__list li + li .group-link { border-top: 1px solid var(--color-rule-dark); }
+.group-link__name { display: flex; align-items: center; gap: var(--space-3); font-family: var(--font-display); font-weight: 700; font-size: var(--text-lg); font-stretch: var(--stretch-display); text-transform: uppercase; letter-spacing: var(--tracking-heading); line-height: 1.15; }
+.group-link__list { display: block; margin-top: var(--space-1); color: var(--color-on-dark-muted); font-size: var(--text-ui); line-height: 1.45; }
+.group-link .icon { color: var(--color-accent-light); width: 1.375rem; height: 1.375rem; transition: transform var(--duration-ui) var(--ease-out); }
+.group-link:hover .group-link__name span { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.2em; }
+.group-link:hover .icon { transform: translateY(3px); }
+@media (min-width: 700px) {
+  .group-bar__list { grid-template-columns: 1fr 1fr; gap: 0 var(--space-10); padding-block: var(--space-6); }
+  .group-bar__list li + li .group-link { border-top: 0; }
+  .group-bar__list li:nth-child(n+3) .group-link { border-top: 1px solid var(--color-rule-dark); }
+}
+@media (min-width: 1200px) {
+  .group-bar__list { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1.35fr) minmax(0, 0.9fr) minmax(0, 1.15fr); gap: var(--space-8); padding-block: var(--space-10); align-items: start; }
+  .group-bar__list li:nth-child(n+3) .group-link { border-top: 0; }
+  .group-bar__list li + li { border-left: 1px solid var(--color-rule-dark); padding-left: var(--space-8); }
+  .group-link { padding-block: 0; }
+}
+
+/* --- Ministry grid: 1 column, 6 at tablet, 12 at desktop; spans set per card --- */
+.mgrid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--card-gap); }
+@media (min-width: 700px) {
+  .mgrid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .mgrid > li { grid-column: span 3; }
+  .mgrid > .mcard--feature, .mgrid > .wide-md { grid-column: span 6; }
+}
+@media (min-width: 1200px) {
+  .mgrid { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  .mgrid > .c4 { grid-column: span 4; }
+  .mgrid > .c5 { grid-column: span 5; }
+  .mgrid > .c6 { grid-column: span 6; }
+  .mgrid > .c7 { grid-column: span 7; }
+  .mgrid > .c12 { grid-column: span 12; }
+}
+
+/* --- Ministry card: solid ministry color, mark watermark bleeding off the corner --- */
+.mcard {
+  position: relative; isolation: isolate; overflow: hidden;
+  border-radius: var(--radius-lg); background: var(--mc); color: var(--color-on-primary);
+  --color-focus: var(--color-on-primary);
+}
+.mcard__panel {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: flex-start;
+  min-height: var(--card-min-h); padding: var(--card-pad);
+}
+.mcard__mark {
+  position: absolute; z-index: -1; bottom: -3rem; right: -3rem;
+  width: clamp(13rem, 10rem + 6vw, 17rem); height: auto; aspect-ratio: 1;
+  color: var(--color-on-primary); opacity: var(--watermark-opacity); pointer-events: none;
+  transition: transform 400ms var(--ease-out);
+}
+.mcard:hover .mcard__mark { transform: translate(-6px, -6px); }
+.mcard__name {
+  font-family: var(--font-display); font-weight: 600; font-size: var(--text-sm); font-stretch: var(--stretch-display);
+  text-transform: uppercase; letter-spacing: var(--tracking-eyebrow); line-height: 1.4;
+}
+.mcard__title {
+  margin-top: var(--space-3); max-width: 16ch;
+  font-family: var(--font-display); font-weight: 700; font-size: var(--text-xl); font-stretch: var(--stretch-display);
+  text-transform: uppercase; letter-spacing: var(--tracking-heading); line-height: 1.1;
+}
+.mcard__desc { margin-top: var(--space-4); max-width: 34ch; line-height: 1.5; }
+.mcard .link-arrow { margin-top: auto; align-self: flex-start; color: var(--color-on-primary); }
+.mcard__desc { margin-bottom: var(--space-8); }
+/* The one action covers the panel, so the whole card is a tap target */
+.mcard .link-arrow::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.mcard .link-arrow:focus-visible { outline-offset: 4px; }
+
+/* Feature card: one per group, photo beside the color panel (text never sits on the photo) */
+.mcard--feature { display: grid; grid-template-columns: minmax(0, 1fr); }
+.mcard__photo { position: relative; overflow: hidden; margin: 0; aspect-ratio: 3 / 2; background: var(--color-primary); }
+.mcard__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.mcard__photo--duotone img { filter: var(--photo-duotone-filter); transform: scale(1.02); }
+@media (min-width: 700px) {
+  .mcard--feature { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .mcard--feature .mcard__photo { aspect-ratio: auto; height: 100%; min-height: var(--card-min-h); }
+}
+@media (min-width: 1200px) {
+  .mcard--feature.c7 { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
+  .mcard--feature.c12 { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+}
+
+/* --- Closing: not sure where to start --- */
+/* Centered so a short closing line doesn't leave an empty right half */
+.closing .section-head { margin-bottom: 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-10); }
+.closing .section-head__intro { display: flex; flex-direction: column; align-items: center; }
+.closing .actions { margin-top: 0; justify-content: center; }
+.closing .lead { max-width: 46ch; margin-inline: auto; }
+
+/* --- Footer --- */
+.site-footer { background: var(--color-primary-deep); color: var(--color-on-primary); padding-block: clamp(4rem, 2rem + 5vw, 7rem) var(--space-10); font-size: var(--text-ui); line-height: 1.6; }
+.footer-grid { display: grid; gap: var(--space-12) var(--space-10); }
+.footer-brand .logo { margin-right: 0; }
+.footer-brand .logo .mark { color: var(--color-on-primary); }
+.footer-brand p { margin-top: var(--space-6); color: var(--color-on-dark-muted); max-width: 30ch; }
+.footer-col h2 { font-size: var(--text-sm); font-weight: 600; text-transform: uppercase; letter-spacing: var(--tracking-eyebrow); color: var(--color-accent-light); margin-bottom: var(--space-4); }
+.footer-col p + p { margin-top: var(--space-3); }
+.footer-col .muted { color: var(--color-on-dark-muted); }
+.footer-col strong { font-weight: 600; }
+.footer-links li a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; }
+.footer-links li a:hover, .footer-col a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+.footer-col .link-arrow { margin-top: var(--space-2); }
+.footer-bottom { margin-top: var(--space-16); padding-top: var(--space-8); border-top: 1px solid var(--color-rule-dark); display: grid; gap: var(--space-3); color: var(--color-on-dark-muted); font-size: 1rem; }
+.footer-bottom a { color: var(--color-on-primary); }
+@media (min-width: 700px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1100px) { .footer-grid { grid-template-columns: 1.3fr 1.2fr 1fr 0.8fr; } }
+</style>
+</head>
+<body class="inner">
+
+<!-- Sprite: the church's mark, Tabler icons (MIT, 2px outline), and the duotone filter -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="mark" viewBox="0 0 64 64">
+      <rect x="4" y="4" width="29.5" height="15" rx="1"/>
+      <rect x="36" y="4" width="24" height="15" rx="1"/>
+      <rect x="4" y="21.5" width="15" height="12" rx="1"/>
+      <rect x="4" y="36" width="24" height="24" rx="1"/>
+      <rect x="30.5" y="45" width="29.5" height="15" rx="1"/>
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"/><path d="M12 7v5l3 3"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z"/><path d="M16 3v4"/><path d="M8 3v4"/><path d="M4 11h16"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/><path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4v16l13 -8z"/></symbol>
+    <symbol id="i-notes" viewBox="0 0 24 24"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"/><path d="M9 9l1 0"/><path d="M9 13l6 0"/><path d="M9 17l6 0"/></symbol>
+    <symbol id="i-music" viewBox="0 0 24 24"><path d="M3 17a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/><path d="M13 17a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/><path d="M9 17v-13h10v13"/><path d="M9 8h10"/></symbol>
+    <symbol id="i-shirt" viewBox="0 0 24 24"><path d="M15 4l6 2v5h-3v8a1 1 0 0 1 -1 1h-10a1 1 0 0 1 -1 -1v-8h-3v-5l6 -2a3 3 0 0 0 6 0"/></symbol>
+    <symbol id="i-carriage" viewBox="0 0 24 24"><path d="M6 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M16 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M2 5h2.5l1.632 4.897a6 6 0 0 0 5.693 4.103h2.675a5.5 5.5 0 0 0 0 -11h-.5v6"/><path d="M6 9h14"/><path d="M9 17l1 -3"/><path d="M16 14l1 3"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"/><path d="M3 7l9 6l9 -6"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6l16 0"/><path d="M4 12l16 0"/><path d="M4 18l16 0"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6l-12 12"/><path d="M6 6l12 12"/></symbol>
+    <!-- Duotone: luminance mapped from primary navy (#1c3559) to stone (#f3f1ec) -->
+    <filter id="duotone" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="0.2126 0.7152 0.0722 0 0  0.2126 0.7152 0.0722 0 0  0.2126 0.7152 0.0722 0 0  0 0 0 1 0"/>
+      <feComponentTransfer>
+        <feFuncR type="table" tableValues="0.110 0.953"/>
+        <feFuncG type="table" tableValues="0.208 0.945"/>
+        <feFuncB type="table" tableValues="0.349 0.925"/>
+      </feComponentTransfer>
+    </filter>
+    <!-- Ministry marks: an original family on a 24px grid, 2px stroke like Tabler, built from the
+         dressed-stone block of the church mark (rounded 1-unit corners, mortar gaps). -->
+    <symbol id="m-kids" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="9" height="14" rx="1"/><rect x="16" y="13" width="5" height="8" rx="1"/></g></symbol>
+    <symbol id="m-youth" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="16" width="5" height="5" rx="1"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><rect x="16" y="3" width="5" height="5" rx="1"/></g></symbol>
+    <symbol id="m-young-adults" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21v-9a9 9 0 0 1 18 0v9h-5v-9a4 4 0 0 0 -8 0v9z"/><path d="M9.17 9.17l-3.53 -3.53"/><path d="M14.83 9.17l3.53 -3.53"/></g></symbol>
+    <symbol id="m-women" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="3" rx="1"/><rect x="8" y="9" width="8" height="6" rx="1"/><rect x="4" y="18" width="16" height="3" rx="1"/></g></symbol>
+    <symbol id="m-men" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="19" height="4" rx="1"/><rect x="5" y="13" width="4" height="8" rx="1"/><rect x="15" y="13" width="4" height="8" rx="1"/></g></symbol>
+    <symbol id="m-life-groups" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9 -6l9 6"/><rect x="5" y="11" width="14" height="10" rx="1"/><path d="M10 21v-5h4v5"/></g></symbol>
+    <symbol id="m-prime-timers" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="16" width="18" height="5" rx="1"/><rect x="6" y="10" width="12" height="3" rx="1"/><rect x="9" y="4" width="6" height="3" rx="1"/></g></symbol>
+    <symbol id="m-prayer" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="14" width="16" height="7" rx="1"/><path d="M12 11c-2.5 -1.5 -2.5 -3.5 0 -5c2.5 -1.5 2.5 -3 0 -4"/></g></symbol>
+    <symbol id="m-grief" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20v-15a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v3a1 1 0 0 1 -1 1h-11a1 1 0 0 0 -1 1v10a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1z"/><rect x="12" y="14" width="7" height="7" rx="1"/></g></symbol>
+    <symbol id="m-food-bank" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="3" width="10" height="4" rx="1"/><path d="M3 10h18a9 9 0 0 1 -18 0z"/></g></symbol>
+    <symbol id="m-worship-tech" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="9" height="14" rx="1"/><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18.5 6a8 8 0 0 1 0 12"/></g></symbol>
+    <symbol id="m-hospitality" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="15" rx="1"/><path d="M16 10h2a3 3 0 0 1 0 6h-2"/></g></symbol>
+    <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 5l0 14"/><path d="M18 13l-6 6"/><path d="M6 13l6 6"/></symbol>
+  </defs>
+</svg>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header is-solid" id="site-header" data-solid>
+  <div class="container site-header__inner">
+    <a class="logo" href="index.html" aria-label="Cornerstone Bible Fellowship, home">
+      <svg class="mark" aria-hidden="true" focusable="false"><use href="#mark"/></svg>
+      <span class="logo__words" aria-hidden="true"><span class="logo__name">Cornerstone</span><span class="logo__sub">Bible Fellowship</span></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <ul>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/sermons/">Sermons</a></li>
+        <li><a href="ministries.html" aria-current="page">Ministries</a></li>
+        <li><a href="/events/">Events</a></li>
+        <li><a href="https://example.org/give">Give</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a class="header-give" href="https://example.org/give">Give</a>
+      <a class="btn btn--solid header-visit" href="/plan-a-visit/">Plan your visit</a>
+      <button class="menu-toggle" type="button" id="menu-open" aria-expanded="false" aria-controls="menu">
+        <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg><span class="menu-toggle__label">Menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="menu on-dark" id="menu" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="container">
+    <div class="menu__top">
+      <a class="logo" href="index.html" aria-label="Cornerstone Bible Fellowship, home">
+        <svg class="mark" aria-hidden="true" focusable="false"><use href="#mark"/></svg>
+        <span class="logo__words" aria-hidden="true"><span class="logo__name">Cornerstone</span><span class="logo__sub">Bible Fellowship</span></span>
+      </a>
+      <button class="menu-toggle" type="button" id="menu-close">
+        <svg class="icon" aria-hidden="true"><use href="#i-x"/></svg><span class="menu-toggle__label">Close</span>
+      </button>
+    </div>
+    <div class="menu__pinned">
+      <a class="btn btn--solid" href="/plan-a-visit/">Plan your visit</a>
+      <a class="btn btn--outline" href="https://example.org/give">Give online</a>
+    </div>
+    <nav aria-label="Main, mobile">
+      <ul class="menu__links">
+        <li><a href="/about/">About <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        <li><a href="/sermons/">Sermons <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        <li><a href="ministries.html" aria-current="page">Ministries <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        <li><a href="/events/">Events <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+      </ul>
+    </nav>
+    <div class="menu__info">
+      <p><strong>Sundays 8:30 and 10:30 AM</strong> · Wednesdays 7:00 PM</p>
+      <p>2100 Ridge Road, Westfield, between Oak Street and Highway 9</p>
+    </div>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- 1. Hero: one line of welcome, the wall of ministry stones, and the four groups -->
+  <section class="mh-hero" aria-labelledby="hero-title">
+    <div class="container mh-hero__body">
+      <div>
+        <p class="eyebrow">Ministries</p>
+        <h1 class="mh-hero__title caps" id="hero-title">Find your <span class="accent-word">place</span></h1>
+        <p class="lead">Twelve ministries, one church. Start with your stage of life, or a way to care and serve.</p>
+      </div>
+        <svg class="wall" viewBox="0 0 600 430" width="600" height="430" aria-hidden="true" focusable="false">
+          <g style="--mc: var(--mc-kids)"><rect class="wall__stone" x="0" y="0" width="160" height="100" rx="5"/><svg class="wall__mark" x="18" y="18" width="40" height="40" viewBox="0 0 24 24"><use href="#m-kids"/></svg></g>
+          <g style="--mc: var(--mc-youth)"><rect class="wall__stone" x="170" y="0" width="140" height="100" rx="5"/><svg class="wall__mark" x="188" y="18" width="40" height="40" viewBox="0 0 24 24"><use href="#m-youth"/></svg></g>
+          <g style="--mc: var(--mc-young-adults)"><rect class="wall__stone" x="320" y="0" width="120" height="100" rx="5"/><svg class="wall__mark" x="338" y="18" width="40" height="40" viewBox="0 0 24 24"><use href="#m-young-adults"/></svg></g>
+          <g style="--mc: var(--mc-women)"><rect class="wall__stone" x="450" y="0" width="150" height="100" rx="5"/><svg class="wall__mark" x="468" y="18" width="40" height="40" viewBox="0 0 24 24"><use href="#m-women"/></svg></g>
+          <g style="--mc: var(--mc-men)"><rect class="wall__stone" x="0" y="110" width="120" height="100" rx="5"/><svg class="wall__mark" x="18" y="128" width="40" height="40" viewBox="0 0 24 24"><use href="#m-men"/></svg></g>
+          <g style="--mc: var(--mc-life-groups)"><rect class="wall__stone" x="130" y="110" width="180" height="100" rx="5"/><svg class="wall__mark" x="148" y="128" width="40" height="40" viewBox="0 0 24 24"><use href="#m-life-groups"/></svg></g>
+          <g style="--mc: var(--mc-prime-timers)"><rect class="wall__stone" x="320" y="110" width="130" height="100" rx="5"/><svg class="wall__mark" x="338" y="128" width="40" height="40" viewBox="0 0 24 24"><use href="#m-prime-timers"/></svg></g>
+          <g style="--mc: var(--mc-prayer)"><rect class="wall__stone" x="460" y="110" width="140" height="100" rx="5"/><svg class="wall__mark" x="478" y="128" width="40" height="40" viewBox="0 0 24 24"><use href="#m-prayer"/></svg></g>
+          <g style="--mc: var(--mc-grief)"><rect class="wall__stone" x="230" y="220" width="180" height="100" rx="5"/><svg class="wall__mark" x="248" y="238" width="40" height="40" viewBox="0 0 24 24"><use href="#m-grief"/></svg></g>
+          <g style="--mc: var(--mc-food-bank)"><rect class="wall__stone" x="420" y="220" width="180" height="100" rx="5"/><svg class="wall__mark" x="438" y="238" width="40" height="40" viewBox="0 0 24 24"><use href="#m-food-bank"/></svg></g>
+          <g style="--mc: var(--mc-hospitality)"><rect class="wall__stone" x="230" y="330" width="200" height="100" rx="5"/><svg class="wall__mark" x="248" y="348" width="40" height="40" viewBox="0 0 24 24"><use href="#m-hospitality"/></svg></g>
+          <g style="--mc: var(--mc-worship-tech)"><rect class="wall__stone" x="440" y="330" width="160" height="100" rx="5"/><svg class="wall__mark" x="458" y="348" width="40" height="40" viewBox="0 0 24 24"><use href="#m-worship-tech"/></svg></g>
+          <g style="--mc: var(--mc-everyone)"><rect class="wall__stone" x="0" y="220" width="220" height="210" rx="5"/><svg class="wall__cmark" x="58" y="273" width="104" height="104" viewBox="0 0 64 64"><use href="#mark"/></svg></g>
+        </svg>
+    </div>
+    <nav class="group-bar on-dark" aria-label="Ministry groups">
+      <ul class="container group-bar__list">
+        <li><a class="group-link" href="#kids-students"><span class="group-link__name"><span>Kids &amp; Students</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-down"/></svg></span><span class="group-link__list">Cornerstone&nbsp;Kids&nbsp;· Youth</span></a></li>
+        <li><a class="group-link" href="#adults"><span class="group-link__name"><span>Adults</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-down"/></svg></span><span class="group-link__list">Young&nbsp;Adults&nbsp;· Women&rsquo;s&nbsp;Bible&nbsp;Study&nbsp;· Men&rsquo;s&nbsp;Fellowship&nbsp;· Life&nbsp;Groups&nbsp;· Prime&nbsp;Timers</span></a></li>
+        <li><a class="group-link" href="#care"><span class="group-link__name"><span>Care</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-down"/></svg></span><span class="group-link__list">Prayer&nbsp;Ministry&nbsp;· Grief&nbsp;Care</span></a></li>
+        <li><a class="group-link" href="#serve"><span class="group-link__name"><span>Serve</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-down"/></svg></span><span class="group-link__list">Food&nbsp;Bank&nbsp;Outreach&nbsp;· Worship&nbsp;and&nbsp;Tech&nbsp;· Hospitality</span></a></li>
+      </ul>
+    </nav>
+  </section>
+
+  <section class="section group" id="kids-students" aria-labelledby="kids-students-title">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__intro">
+          <span class="accent-bar" aria-hidden="true"></span>
+          <h2 class="h2 caps" id="kids-students-title">Kids and Students</h2>
+        </div>
+        <p class="lead">Nursery through 12th grade, taught from the Bible at every age.</p>
+      </div>
+      <ul class="mgrid">
+          <li class="mcard mcard--feature c7" style="--mc: var(--mc-kids)">
+            <figure class="mcard__photo">
+              <img src="https://images.unsplash.com/photo-1567057419865-38d8cff1c2b9?auto=format&amp;fit=crop&amp;w=1400&amp;q=80"
+                 srcset="https://images.unsplash.com/photo-1567057419865-38d8cff1c2b9?auto=format&amp;fit=crop&amp;w=900&amp;q=80 900w, https://images.unsplash.com/photo-1567057419865-38d8cff1c2b9?auto=format&amp;fit=crop&amp;w=1400&amp;q=80 1400w"
+                 sizes="(min-width: 1200px) 560px, (min-width: 700px) 50vw, 100vw" width="1400" height="933" loading="lazy"
+                 style="object-position: 60% 40%" alt="Young children smiling and huddled together indoors">
+            </figure>
+            <div class="mcard__panel">
+              <svg class="mcard__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#m-kids"/></svg>
+              <h3 class="mcard__name">Cornerstone Kids</h3>
+              <p class="mcard__title">Learning God&rsquo;s Word early</p>
+              <p class="mcard__desc">Nursery through 5th grade, Sundays at 8:30 and 10:30&nbsp;AM.</p>
+              <a class="link-arrow" href="/ministries/kids/">Learn more<span class="visually-hidden"> about Cornerstone Kids</span> <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </li>
+          <li class="mcard c5 wide-md" style="--mc: var(--mc-youth)">
+            <div class="mcard__panel">
+              <svg class="mcard__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#m-youth"/></svg>
+              <h3 class="mcard__name">Youth</h3>
+              <p class="mcard__title">Faith for the teen years</p>
+              <p class="mcard__desc">6th through 12th grade, Wednesdays at 7:00&nbsp;PM.</p>
+              <a class="link-arrow" href="/ministries/youth/">Learn more<span class="visually-hidden"> about Youth</span> <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </li>
+      </ul>
+    </div>
+  </section>
+  <section class="section group section--alt" id="adults" aria-labelledby="adults-title">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__intro">
+          <span class="accent-bar" aria-hidden="true"></span>
+          <h2 class="h2 caps" id="adults-title">Adults</h2>
+        </div>
+        <p class="lead">Bible study and fellowship for every season of adult life.</p>
+      </div>
+      <ul class="mgrid">
+          <li class="mcard mcard--feature c7" style="--mc: var(--mc-women)">
+            <figure class="mcard__photo">
+              <img src="https://images.unsplash.com/photo-1584721639492-b7635de6c508?auto=format&amp;fit=crop&amp;w=1400&amp;q=80"
+                 srcset="https://images.unsplash.com/photo-1584721639492-b7635de6c508?auto=format&amp;fit=crop&amp;w=900&amp;q=80 900w, https://images.unsplash.com/photo-1584721639492-b7635de6c508?auto=format&amp;fit=crop&amp;w=1400&amp;q=80 1400w"
+                 sizes="(min-width: 1200px) 560px, (min-width: 700px) 50vw, 100vw" width="1400" height="2100" loading="lazy"
+                 style="object-position: 50% 45%" alt="Two women walking and talking on a bridge">
+            </figure>
+            <div class="mcard__panel">
+              <svg class="mcard__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#m-women"/></svg>
+              <h3 class="mcard__name">Women&rsquo;s Bible Study</h3>
+              <p class="mcard__title">Women in the Word</p>
+              <p class="mcard__desc">Tuesdays at 9:30&nbsp;AM and Thursdays at 7:00&nbsp;PM.</p>
+              <a class="link-arrow" href="/ministries/women/">Learn more<span class="visually-hidden"> about Women&amp;rsquo;s Bible Study</span> <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </li>
+          <li class="mcard c5" style="--mc: var(--mc-life-groups)">
+            <div class="mcard__panel">
+              <svg class="mcard__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#m-life-groups"/></svg>
+              <h3 class="mcard__name">Life Groups</h3>
+              <p class="mcard__title">Open homes, open Bibles</p>
+              <p class="mcard__desc">Small groups that meet in homes across Westfield, most weeknights.</p>
+              <a class="link-arrow" href="/ministries/life-groups/">Learn more<span class="visually-hidden"> about Life Groups</span> <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </li>
+          <li class="mcard c4" style="--mc: var(--mc-young-adults)">
+            <div class="mcard__panel">
+              <svg class="mcard__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#m-young-adults"/></svg>
+              <h3 class="mcard__name">Young Adults</h3>
+              <p class="mcard__title">Building on the rock</p>
+              <p class="mcard__desc">For adults ages 18 to 29.</p>
+              <a class="link-arrow" href="/ministries/young-adults/">Learn more<span class="visually-hidden"> about Young Adults</span> <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </li>
+          <li class="mcard c4" style="--mc: var(--mc-men)">
+            <div class="mcard__panel">
+              <svg class="mcard__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#m-men"/></svg>
+              <h3 class="mcard__name">Men&rsquo;s Fellowship</h3>
+              <p class="mcard__title">Iron sharpens iron</p>
+              <p class="mcard__desc">Breakfast the first Saturday of each month, 8:00&nbsp;AM.</p>
+              <a class="link-arrow" href="/ministries/men/">Learn more<span class="visually-hidden"> about Men&amp;rsquo;s Fellowship</span> <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </li>
+          <li class="mcard c4" style="--mc: var(--mc-prime-timers)">
+            <div class="mcard__panel">
+              <svg class="mcard__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#m-prime-timers"/></svg>
+              <h3 class="mcard__name">Prime Timers</h3>
+              <p class="mcard__title">Our seniors&rsquo; fellowship</p>
+              <p class="mcard__desc">Friendship and encouragement for our senior adults.</p>
+              <a class="link-arrow" href="/ministries/prime-timers/">Learn more<span class="visually-hidden"> about Prime Timers</span> <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </li>
+      </ul>
+    </div>
+  </section>
+  <section class="section group" id="care" aria-labelledby="care-title">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__intro">
+          <span class="accent-bar" aria-hidden="true"></span>
+          <h2 class="h2 caps" id="care-title">Care</h2>
+        </div>
+        <p class="lead">Prayer and steady support when life is heavy.</p>
+      </div>
+      <ul class="mgrid">
+          <li class="mcard c6" style="--mc: var(--mc-prayer)">
+            <div class="mcard__panel">
+              <svg class="mcard__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#m-prayer"/></svg>
+              <h3 class="mcard__name">Prayer Ministry</h3>
+              <p class="mcard__title">Let us pray with you</p>
+              <p class="mcard__desc">Our prayer team is ready after each Sunday service.</p>
+              <a class="link-arrow" href="mailto:office@example.org?subject=Prayer%20request">Request prayer <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </li>
+          <li class="mcard c6" style="--mc: var(--mc-grief)">
+            <div class="mcard__panel">
+              <svg class="mcard__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#m-grief"/></svg>
+              <h3 class="mcard__name">Grief Care</h3>
+              <p class="mcard__title">You don&rsquo;t grieve alone</p>
+              <p class="mcard__desc">A 13-week support group for anyone walking through loss.</p>
+              <a class="link-arrow" href="/ministries/grief-care/">Learn more<span class="visually-hidden"> about Grief Care</span> <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </li>
+      </ul>
+    </div>
+  </section>
+  <section class="section group section--alt" id="serve" aria-labelledby="serve-title">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__intro">
+          <span class="accent-bar" aria-hidden="true"></span>
+          <h2 class="h2 caps" id="serve-title">Serve</h2>
+        </div>
+        <p class="lead">Use your gifts on Sundays and across Westfield.</p>
+      </div>
+      <ul class="mgrid">
+          <li class="mcard mcard--feature c12" style="--mc: var(--mc-food-bank)">
+            <figure class="mcard__photo mcard__photo--duotone">
+              <img src="https://images.unsplash.com/photo-1560220604-1985ebfe28b1?auto=format&amp;fit=crop&amp;w=1400&amp;q=80"
+                 srcset="https://images.unsplash.com/photo-1560220604-1985ebfe28b1?auto=format&amp;fit=crop&amp;w=900&amp;q=80 900w, https://images.unsplash.com/photo-1560220604-1985ebfe28b1?auto=format&amp;fit=crop&amp;w=1400&amp;q=80 1400w"
+                 sizes="(min-width: 1200px) 560px, (min-width: 700px) 50vw, 100vw" width="1400" height="933" loading="lazy"
+                 style="object-position: 50% 35%" alt="Three volunteers in yellow shirts, seen from behind">
+            </figure>
+            <div class="mcard__panel">
+              <svg class="mcard__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#m-food-bank"/></svg>
+              <h3 class="mcard__name">Food Bank Outreach</h3>
+              <p class="mcard__title">Feeding our neighbors</p>
+              <p class="mcard__desc">Second Saturday of each month, 9:00&nbsp;AM.</p>
+              <a class="link-arrow" href="/ministries/food-bank/">Learn more<span class="visually-hidden"> about Food Bank Outreach</span> <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </li>
+          <li class="mcard c6" style="--mc: var(--mc-worship-tech)">
+            <div class="mcard__panel">
+              <svg class="mcard__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#m-worship-tech"/></svg>
+              <h3 class="mcard__name">Worship and Tech</h3>
+              <p class="mcard__title">Behind every Sunday</p>
+              <p class="mcard__desc">Serve on the worship or tech team on Sundays.</p>
+              <a class="link-arrow" href="/ministries/worship-tech/">Learn more<span class="visually-hidden"> about Worship and Tech</span> <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </li>
+          <li class="mcard c6" style="--mc: var(--mc-hospitality)">
+            <div class="mcard__panel">
+              <svg class="mcard__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#m-hospitality"/></svg>
+              <h3 class="mcard__name">Hospitality</h3>
+              <p class="mcard__title">First faces at the door</p>
+              <p class="mcard__desc">Greeters, coffee, and welcome team on Sundays.</p>
+              <a class="link-arrow" href="/ministries/hospitality/">Learn more<span class="visually-hidden"> about Hospitality</span> <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Scripture: every member has a place in the building -->
+  <section class="section verse-band on-dark" aria-label="Scripture">
+    <svg class="verse-band__mark" aria-hidden="true" focusable="false"><use href="#mark"/></svg>
+    <div class="container">
+      <span class="accent-bar" aria-hidden="true"></span>
+      <blockquote class="verse">
+        <p>&ldquo;&hellip;you also, as living stones, are being built up a spiritual house&hellip;&rdquo;</p>
+        <footer><cite>1 Peter 2:5 NKJV</cite></footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- Closing: one next step for anyone still unsure -->
+  <section class="section closing" aria-labelledby="closing-title">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-head__intro">
+          <span class="accent-bar" aria-hidden="true"></span>
+          <h2 class="h2 caps" id="closing-title">Not sure where to start?</h2>
+          <p class="lead">Join us on a Sunday at 8:30 or 10:30&nbsp;AM, or email the office. We&rsquo;ll help you find your people.</p>
+        </div>
+        <div class="actions">
+          <a class="btn btn--solid" href="/plan-a-visit/">Plan your visit <svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn--outline" href="mailto:office@example.org?subject=Finding%20a%20ministry"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> Email us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer on-dark">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="index.html" aria-label="Cornerstone Bible Fellowship, home">
+          <svg class="mark" aria-hidden="true" focusable="false"><use href="#mark"/></svg>
+          <span class="logo__words" aria-hidden="true"><span class="logo__name">Cornerstone</span><span class="logo__sub">Bible Fellowship</span></span>
+        </a>
+        <p>A Bible church in Westfield, teaching verse by verse through the Bible.</p>
+      </div>
+      <div class="footer-col">
+        <h2>Visit</h2>
+        <p><strong>Sundays 8:30 and 10:30 AM</strong><br><span class="muted">Wednesdays 7:00 PM, midweek Bible study</span></p>
+        <p>2100 Ridge Road, Westfield<br><span class="muted">Between Oak Street and Highway 9. The main entrance faces the north parking lot; accessible parking is by the front doors.</span></p>
+        <a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=2100+Ridge+Road+Westfield">Get directions <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="footer-col">
+        <h2>Contact</h2>
+        <p><a href="mailto:office@example.org">office@example.org</a></p>
+        <a class="link-arrow" href="https://example.org/give">Give online <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="footer-col">
+        <h2>Explore</h2>
+        <ul class="footer-links">
+          <li><a href="/plan-a-visit/">Plan your visit</a></li>
+          <li><a href="/about/beliefs/">What we believe</a></li>
+          <li><a href="/sermons/">Sermons</a></li>
+          <li><a href="ministries.html">Ministries</a></li>
+          <li><a href="/events/">Events</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Cornerstone Bible Fellowship. A fictional church: this page is a public demo of the church-design skill.</p>
+      <p>Photos on this page from Unsplash by
+        <a href="https://unsplash.com/photos/toddlers-standing-inside-building-KBpIcWV6o2c">Annie Spratt</a>,
+        <a href="https://unsplash.com/photos/2-women-standing-on-bridge-during-daytime-CQWsDU-8V1k">Omar Lopez</a>, and
+        <a href="https://unsplash.com/photos/three-men-wearing-yellow-volunteers-shirts-qKVSEuBT5EY">Rashpal Singh</a>.
+        Icons: <a href="https://tabler.io/icons">Tabler Icons</a> (MIT). Ministry marks drawn for this site.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var header = document.getElementById('site-header');
+
+  /* Header: transparent over the hero, solid and shorter after 24px of scroll */
+  var alwaysSolid = header.hasAttribute('data-solid');   /* inner pages: solid from the top */
+  function onScroll() { header.classList.toggle('is-solid', alwaysSolid || window.scrollY > 24); }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* Mobile menu: full screen, outside the header; focus trapped; Esc closes */
+  var menu = document.getElementById('menu');
+  var openBtn = document.getElementById('menu-open');
+  var closeBtn = document.getElementById('menu-close');
+  var main = document.getElementById('main');
+  var footer = document.querySelector('.site-footer');
+  var skip = document.querySelector('.skip-link');
+
+  function focusables() {
+    return Array.prototype.slice.call(menu.querySelectorAll('a[href], button:not([disabled])'));
+  }
+  function setInert(on) {
+    [header, main, footer, skip].forEach(function (el) { if (on) { el.setAttribute('inert', ''); } else { el.removeAttribute('inert'); } });
+  }
+  function openMenu() {
+    menu.classList.add('is-open');
+    document.body.classList.add('menu-open');
+    openBtn.setAttribute('aria-expanded', 'true');
+    setInert(true);
+    closeBtn.focus();
+  }
+  function closeMenu(returnFocus) {
+    menu.classList.remove('is-open');
+    document.body.classList.remove('menu-open');
+    openBtn.setAttribute('aria-expanded', 'false');
+    setInert(false);
+    if (returnFocus !== false) { openBtn.focus(); }
+  }
+  openBtn.addEventListener('click', openMenu);
+  closeBtn.addEventListener('click', function () { closeMenu(); });
+  menu.addEventListener('click', function (e) { if (e.target.closest('a')) { closeMenu(false); } });
+  document.addEventListener('keydown', function (e) {
+    if (!menu.classList.contains('is-open')) return;
+    if (e.key === 'Escape') { closeMenu(); return; }
+    if (e.key === 'Tab') {
+      var items = focusables();
+      var first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+  window.matchMedia('(min-width: 1200px)').addEventListener('change', function (mq) {
+    if (mq.matches && menu.classList.contains('is-open')) { closeMenu(false); }
+  });
+})();
+</script>
+</body>
+</html>
