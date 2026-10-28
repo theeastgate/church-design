@@ -37,8 +37,8 @@ Use icons where they help people act or scan: arrows, play, map pin, calendar, c
 | Set | License | Character | Good for |
 |---|---|---|---|
 | **Phosphor** | MIT | Six weights (thin, light, regular, bold, fill, duotone) | Any direction; light or thin for Warm Editorial and Traditional, bold or fill for Bold Contemporary and Playful |
-| **Lucide** | ISC | Clean 2px stroke, rounded | Bold Contemporary, Ministry Hub |
-| **Tabler Icons** | MIT | Large catalog, 2px stroke | Classic Confident, Ministry Hub |
+| **Lucide** | ISC | Clean 2px stroke, rounded | Bold Contemporary, the Ministry Hub layer |
+| **Tabler Icons** | MIT | Large catalog, 2px stroke | Classic Confident, the Ministry Hub layer |
 | **Iconoir** | MIT | Thin, friendly stroke | Warm Editorial, Playful Modern |
 | **Heroicons** | MIT | Outline and solid pairs | Bold Contemporary, app-like hubs |
 

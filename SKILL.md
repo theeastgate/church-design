@@ -1,6 +1,6 @@
 ---
 name: church-design
-description: Front-end design guidance for church websites and ministry UI. Use when designing, building, restyling, refreshing, or reviewing any church or ministry web page, section, or component (homepage, plan-a-visit, sermons, events, giving, ministry pages, location pages) in any stack, including WordPress, Tailwind, React, or plain HTML/CSS. Provides six style directions (Bold Contemporary, Warm Editorial, Playful Modern, Classic Confident, Ministry Hub, Traditional/Liturgical), brand-cohesion rules, church-specific modules, accessibility for all ages, and anti-patterns to avoid.
+description: Front-end design guidance for church websites and ministry UI. Use when designing, building, restyling, refreshing, or reviewing any church or ministry web page, section, or component (homepage, plan-a-visit, sermons, events, giving, ministry pages, location pages) in any stack, including WordPress, Tailwind, React, or plain HTML/CSS. Provides five style directions (Bold Contemporary, Warm Editorial, Playful Modern, Classic Confident, Traditional/Liturgical), an optional Ministry Hub layer for churches with many ministries, brand-cohesion rules, church-specific modules, accessibility for all ages, and anti-patterns to avoid.
 ---
 
 # Church Design
@@ -49,6 +49,7 @@ These hold in every direction and every mode. Details are in `references/foundat
 |---|---|
 | Tokens, type scale, spacing, radius, cohesion rules | `references/foundations.md` |
 | A specific style direction | `references/directions/<direction>.md` |
+| Many ministries with their own identity (optional layer) | `references/layers/ministry-hub.md` |
 | Heroes, sermon blocks, location cards, ministry cards, Scripture blocks, give CTAs, events, nav, footer | `references/modules.md` |
 | What each page type is for, its hero, section order, and depth; what is sitewide vs per page | `references/page-types.md` |
 | Photography and illustration | `references/imagery.md` |
@@ -68,8 +69,9 @@ These hold in every direction and every mode. Details are in `references/foundat
 | `warm-editorial` | Serif headlines, navy and earth tones, line art, collage photos | Established evangelical, Bible, and Reformed churches wanting warmth and depth |
 | `playful-modern` | Very heavy lowercase sans, outline type, hand-drawn accents, bright accent | Young, energetic, family-heavy churches |
 | `classic-confident` | Uppercase geometric sans, tinted photo overlays, warm accent | Teaching-focused churches, Calvary Chapel and Bible church traditions |
-| `ministry-hub` | Solid-color and photo cards per ministry, watermark marks | Churches with many ministries that each need a sub-brand |
 | `traditional-liturgical` | Classic book serifs, letterspaced caps, quiet palette, seasonal accent | Anglican, Lutheran, Catholic, Orthodox, Presbyterian, historic congregations |
+
+**Layer:** `ministry-hub` (`references/layers/ministry-hub.md`) adds ministry colors, marks, cards, and a grouped directory on top of any direction, for churches with many ministries that each need a sub-brand.
 
 ## Output standard
 

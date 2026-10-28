@@ -32,9 +32,11 @@ Ask in one batch. Skip any question already answered.
 
 If the user wants a blend, pick one as the base and borrow at most one signature element from the other.
 
+**Layers:** if the church has more than about six ministries that each want their own identity, offer the `ministry-hub` layer (`references/layers/ministry-hub.md`) on top of the chosen direction.
+
 Photo supply matters:
 
-- Few or no good photos: favor `traditional-liturgical`, `ministry-hub`, or `playful-modern` (type-led or color-led directions).
+- Few or no good photos: favor `traditional-liturgical` or `playful-modern` (type-led directions), and consider the `ministry-hub` layer, which carries ministries with color and marks instead of photos.
 - Strong photos and video: any direction works; `bold-contemporary` and `classic-confident` need them most.
 
 ## 4. Lock the brand constants

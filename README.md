@@ -54,24 +54,64 @@ Plus an optional **Ministry Hub layer** that works with any direction: a color, 
 
 ## Install
 
-**Claude Code (one project):** copy this folder to `.claude/skills/church-design/` in your project.
+**Any agent, one command** (uses the open [skills CLI](https://github.com/vercel-labs/skills); works with Claude Code, Codex, Cursor, and others):
 
-**Claude Code (all projects):** copy it to `~/.claude/skills/church-design/`.
+```bash
+npx skills add joshblevins/church-design -g
+```
 
-**Other agents:** place the folder wherever your agent loads skills (Codex, Cursor, and others support the `SKILL.md` format).
+Leave off `-g` to install into the current project only.
 
-## Use
+**Claude Code with git:**
 
-Just ask. The skill triggers on church design work:
+```bash
+# All projects
+git clone https://github.com/joshblevins/church-design.git ~/.claude/skills/church-design
 
-- "Set up the church design skill for Grace Fellowship" → runs **init** and writes `MINISTRY.md`
+# One project (run from the project root)
+git clone https://github.com/joshblevins/church-design.git .claude/skills/church-design
+```
+
+**Codex with git:** clone into `~/.agents/skills/church-design` (all projects) or `.agents/skills/church-design` (one project), then restart Codex.
+
+**Or ask your agent:** "Install the skill at https://github.com/joshblevins/church-design globally."
+
+**Update:** run `git pull` in the skill folder, or `npx skills update`.
+
+## Getting started
+
+Once installed, the skill loads on its own when you ask for church design work. You can also call it by name: `/church-design` in Claude Code.
+
+### A new church site
+
+1. **Set up the church.** "Use the church design skill to set up Grace Fellowship." Claude asks one short batch of questions (tradition, audience, logo and colors, Bible translation, photos, Sunday details for guests, platform) and skips anything you already answered.
+2. **Pick a direction.** If you name one, Claude checks that it fits your tradition and photos. If not, it recommends two. Churches with many ministries are offered the Ministry Hub layer.
+3. **Lock the brand.** Claude sets fonts, color roles, corners, buttons, photo overlay, and section rhythm, checks contrast, and writes it all to `MINISTRY.md` in your project root. Unknown facts are marked `TODO`, never invented.
+4. **Design pages.** "Design our homepage." "Now the Plan a Visit page." Each page follows its page type and the same brand constants.
+5. **Check it.** "Audit the homepage" reviews contrast, text size, the path to Give, balance, white space, and generic patterns at phone, tablet, and large-monitor widths.
+
+### A site that already exists
+
+1. **Point Claude at it.** "Refresh our WordPress theme's homepage with the church design skill." Claude reads the current pages, navigation, logo, colors, fonts, photos, and giving path. For WordPress it notes block theme, classic theme, or page builder, which decides where changes go. It runs a full audit first.
+2. **Decide what stays.** By default it keeps your logo, platform, URLs, and content, adjusts colors only as far as contrast requires, and rewrites only headlines and button labels.
+3. **Set up from what's there.** If there's no `MINISTRY.md`, Claude writes one from your existing brand and shows the current problems beside two candidate directions.
+4. **Change in layers,** each reviewable on its own: tokens (`theme.json` or a CSS variables file), then header, footer, and buttons, then the homepage, then template pages, then copy.
+5. **Protect what works.** No URL changes without redirects, no removed content without asking, and giving, sermon, and livestream embeds keep working. It finishes with a before-and-after list.
+
+### After setup
+
+`MINISTRY.md` is the source of truth. Come back weeks later and ask for an events page or a new ministry section, and it will match. When something changes (new times, a new ministry, a new direction), update that file or ask Claude to. One-off components work without setup; Claude asks which direction to use.
+
+**Example prompts:**
+
+- "Set up the church design skill for Grace Fellowship" → **init**
 - "Design a plan-a-visit page" → **design**
 - "Refresh our WordPress site's homepage" → **refresh**
 - "Audit our homepage" → **audit**
 
 ## Contributing
 
-Issues are welcome for bugs, questions, and ideas, such as new direction examples, module patterns, or accessibility improvements. This project doesn't accept outside pull requests; changes are made by the maintainer. Please share only original work or openly licensed material in issues, and no screenshots or assets from other churches' sites.
+Issues and pull requests are welcome, especially new direction examples, module patterns, and accessibility improvements. Please contribute only original work or openly licensed material; do not submit screenshots or assets from other churches' sites.
 
 ## License
 
