@@ -71,7 +71,7 @@ Just ask. The skill triggers on church design work:
 
 ## Contributing
 
-Issues and pull requests are welcome, especially new direction examples, module patterns, and accessibility improvements. Please contribute only original work or openly licensed material; do not submit screenshots or assets from other churches' sites.
+Issues are welcome for bugs, questions, and ideas, such as new direction examples, module patterns, or accessibility improvements. This project doesn't accept outside pull requests; changes are made by the maintainer. Please share only original work or openly licensed material in issues, and no screenshots or assets from other churches' sites.
 
 ## License
 
